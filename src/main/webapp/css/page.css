@@ -28,9 +28,9 @@ td {
 
 
 img {
-    float: bottom;
-    margin: 7px 7px 7px 7px;
-    /*margin: auto;*/
+    /*float: bottom;*/
+    /*margin: 7px 7px 7px 7px;*/
+    margin: auto;
     display: block;
     border-radius: 10px;
     max-width: 100%;
@@ -41,7 +41,7 @@ img {
     padding-left: 2px;
     padding-right: 2px;
     text-indent: 5px;
-    text-align: justify;
+    text-align: center;
     font-size: x-large;
     font-family: "Ink Free", serif;
 }

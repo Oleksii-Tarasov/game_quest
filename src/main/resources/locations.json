@@ -1,0 +1,10 @@
+{
+  "prison" : "/view/prison.jsp",
+  "mainhall" : "/view/mainhall.jsp",
+  "cage" : "/view/cage.jsp",
+  "dungeon" : "/view/dungeon.jsp",
+  "exit" : "/view/exit.jsp",
+  "bossarena" : "/view/bossarena.jsp",
+  "hell" : "/view/hell.jsp",
+  "thronehall" : "/view/thronehall.jsp"
+}
