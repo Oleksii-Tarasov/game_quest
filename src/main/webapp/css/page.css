@@ -1,0 +1,175 @@
+body {
+    background-color: #333131;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+}
+
+header {
+    text-align: center;
+    font-size: xxx-large;
+    font-family: Constantia, serif;
+    color: #a4711b;
+}
+
+table {
+    margin: auto;
+    padding-top: 15px;
+    color: #a4711b;
+}
+
+td {
+    text-align: center;
+    font-size: x-large;
+    font-family: Constantia, serif;
+    padding-top: 4px;
+}
+
+
+img {
+    float: bottom;
+    margin: 7px 7px 7px 7px;
+    /*margin: auto;*/
+    display: block;
+    border-radius: 10px;
+    max-width: 100%;
+    border: 3px solid;
+}
+
+.contentBlock, p {
+    padding-left: 2px;
+    padding-right: 2px;
+    text-indent: 5px;
+    text-align: justify;
+    font-size: x-large;
+    font-family: "Ink Free", serif;
+}
+
+input[type=text] {
+    width: 150px;
+    background: #333131;
+    color: darkgray;
+    font-family: Constantia, serif;
+    font-size: large;
+    text-align: center;
+    cursor: pointer;
+}
+
+input[type=submit] {
+    background: #333131;
+    color: darkgray;
+    border: none;
+    font-family: "Ink Free", serif;
+    font-size: x-large;
+    text-align: justify;
+    cursor: pointer;
+}
+
+.checkBox {
+    display: inline;
+    background: #333131;
+    color: #489cbb;
+    border: none;
+    font-family: Constantia, serif;
+    font-size: large;
+    text-align: justify;
+}
+
+a {
+    color: darkgray;
+    text-decoration: none;
+}
+
+.inventory {
+    font-size: xx-large;
+    font-family: Constantia, serif;
+    background-color: #333131;
+    color: darkgray;
+    border: 1px;
+}
+
+.inventory:hover {
+    border: 1px solid #a4711b;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.menu {
+    padding-top: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.menu:hover .dropdown-child {
+    display: block;
+}
+
+.dropdown-child {
+    display: none;
+    background-color: #231f1f;
+    min-width: 150px;
+    border: 1px solid #a4711b;
+    border-radius: 8px;
+}
+
+.dropdown-child button {
+    margin: auto;
+    border: none;
+    font-size: x-large;
+    font-family: Constantia, serif;
+    color: darkgray;
+    padding: 10px;
+    display: block;
+    cursor: grab;
+}
+
+button {
+    font-size: x-large;
+    font-family: Constantia, serif;
+    background-color: #231f1f;
+    color: gray;
+    border: 2px solid #a4711b;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.loserLabel {
+    border-radius: 8px;
+    color: #a50e0e;
+    font-size: 40px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.winnerLabel {
+    border-radius: 8px;
+    color: cornflowerblue;
+    font-size: 40px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.startButton {
+    margin: auto;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.introduceContentBlock {
+    padding-top: 20px;
+    text-align: center;
+    font-size: xx-large;
+    font-family: Constantia, serif;
+    color: #a4711b;
+
+    float: none;
+    margin: auto;
+}
+
+.message {
+    font-family: Constantia, serif;
+    font-size: x-large;
+    text-align: left;
+    color: grey;
+}
