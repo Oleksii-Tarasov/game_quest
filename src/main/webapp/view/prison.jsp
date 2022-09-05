@@ -1,7 +1,10 @@
 <img src="${pageContext.request.contextPath}/img/prison.jpg" alt="">
+<audio autoplay>
+    <source src="${pageContext.request.contextPath}/sound/prison.mp3">
+</audio>
 <p>
     You open your eyes, ${nickname}, and discover that you are in an old dirty prison.<br>
-    You do not remember who you are and why you are here.
+    You do not remember why you are here.
 </p>
 <p>
     The air is full of dampness and death.<br>
@@ -9,9 +12,9 @@
     There is a huge lock hanging on the rusty doors of your cell.
 </p>
 <p>
-    Suddenly, a shadow is sweeping behind the door, and a lock falls to the floor.
+    Suddenly, a shadow is sweeping behind the door, and the lock falls to the floor.
 </p>
-    Now only you decide: to fight for your life and <a href="${pageContext.request.contextPath}/location/?loc=mainhall">
+    Now only you decide - to fight for your life and <a href="${pageContext.request.contextPath}/location/?loc=mainhall">
     get out of cell.</a>
 </p>
 <p>

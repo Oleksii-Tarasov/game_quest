@@ -2,8 +2,10 @@
   "prison" : "/view/prison.jsp",
   "mainhall" : "/view/mainhall.jsp",
   "cage" : "/view/cage.jsp",
+  "garden" : "/view/garden.jsp",
   "dungeon" : "/view/dungeon.jsp",
-  "exit" : "/view/exit.jsp",
+  "cellar" : "/view/cellar.jsp",
+  "firehall" : "/view/firehall.jsp",
   "bossarena" : "/view/bossarena.jsp",
   "hell" : "/view/hell.jsp",
   "thronehall" : "/view/thronehall.jsp"

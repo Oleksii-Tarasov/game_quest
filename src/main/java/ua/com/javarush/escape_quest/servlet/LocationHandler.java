@@ -17,6 +17,7 @@ public class LocationHandler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HashMap gameLocations = getGameMaster().getGameLocations();
+
         String location = req.getParameter("loc");
 
         req.setAttribute("contentBlock", gameLocations.get(location));
