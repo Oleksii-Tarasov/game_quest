@@ -14,7 +14,7 @@
     prison? From which comes sounds like clattering jaws.
 </p>
 <p>
-    <a href="${pageContext.request.contextPath}/location/?loc=firehall">Go down</a> a corridor with flames from an
+    <a href="${pageContext.request.contextPath}/location/?loc=firebridge">Go down</a> a corridor with flames from an
     unknown source playing on the walls?
 </p>
 <a href="${pageContext.request.contextPath}/location/?loc=garden">Climb up</a> the stairs

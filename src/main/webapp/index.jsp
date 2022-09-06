@@ -23,7 +23,7 @@
     </tr>
     <tr>
         <td>
-            <c:set var="map" value="${inventory}" scope="session"/>
+            <c:set var="map" value="${inventory}" scope="request"/>
             <c:if test="${map.size()!=0 && map!=null}">
                 <div class="menu">
                     <button class="inventory">Inventory↓</button>

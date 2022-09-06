@@ -1,5 +1,7 @@
 package ua.com.javarush.escape_quest.servlet;
 
+import ua.com.javarush.escape_quest.model.GameMaster;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,29 +12,37 @@ import java.util.HashMap;
 
 import static ua.com.javarush.escape_quest.constant.GoodBadEnds.BAD_ENDS;
 import static ua.com.javarush.escape_quest.constant.GoodBadEnds.GOOD_ENDS;
-import static ua.com.javarush.escape_quest.model.GameMaster.getGameMaster;
 
 @WebServlet("/location/")
 public class LocationHandler extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HashMap gameLocations = getGameMaster().getGameLocations();
+        GameMaster gameMaster = GameMaster.getGameMaster();
+        HashMap gameLocations = gameMaster.getGameLocations();
 
         String location = req.getParameter("loc");
 
         req.setAttribute("contentBlock", gameLocations.get(location));
-        req.setAttribute("nickname", getGameMaster().getPlayerNickname());
+        req.setAttribute("nickname", gameMaster.getPlayerNickname());
+        req.setAttribute("inventory", gameMaster.getPlayerInventory());
 
-        setEndGameStatusIfItsOver(req, location);
+        displayEndGameStatusIfItsOver(req, location);
+        displayGameItemsIfItsPossible(gameMaster, req, location);
 
         getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 
-    private void setEndGameStatusIfItsOver(HttpServletRequest request, String location) {
+    private void displayEndGameStatusIfItsOver(HttpServletRequest request, String location) {
         if (BAD_ENDS.contains(location)) {
             request.setAttribute("isGameOver", true);
         } else if (GOOD_ENDS.contains(location)) {
             request.setAttribute("isWinner", true);
+        }
+    }
+
+    private void displayGameItemsIfItsPossible(GameMaster gameMaster, HttpServletRequest request, String location){
+        if ("firehall".equals(location)) {
+            request.setAttribute("gameItems", gameMaster.getGameItems());
         }
     }
 }

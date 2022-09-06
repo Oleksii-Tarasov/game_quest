@@ -8,5 +8,5 @@ public final class GoodBadEnds {
 
     public static final List<String> GOOD_ENDS = List.of("garden", "thronehall");
 
-    public static final List<String> BAD_ENDS = List.of("cage", "cellar");
+    public static final List<String> BAD_ENDS = List.of("cage", "cellar", "firecage");
 }

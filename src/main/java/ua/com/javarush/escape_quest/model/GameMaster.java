@@ -1,11 +1,9 @@
 package ua.com.javarush.escape_quest.model;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import ua.com.javarush.escape_quest.service.ItemLoader;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
+import java.util.Map;
 
 import static ua.com.javarush.escape_quest.constant.ResourceFilePath.ITEMS_FILE_PATH;
 import static ua.com.javarush.escape_quest.constant.ResourceFilePath.LOCATIONS_FILE_PATH;
@@ -14,7 +12,7 @@ public class GameMaster {
     private static GameMaster gameMaster;
     private ItemLoader itemLoader;
     private String playerNickname;
-    private HashMap playerInventory;
+    private Map<String, String> playerInventory;
     private HashMap gameItems;
     private HashMap gameLocations;
 
@@ -37,16 +35,16 @@ public class GameMaster {
         this.playerNickname = playerNickname;
     }
 
-    public HashMap getPlayerInventory() {
+    public Map<String, String> getPlayerInventory() {
         return playerInventory;
     }
 
-    public void setPlayerInventory(HashMap playerInventory) {
+    public void setPlayerInventory(Map<String, String> playerInventory) {
         this.playerInventory = playerInventory;
     }
 
     public HashMap getGameItems() {
-        return gameItems;
+        return this.gameItems;
     }
 
     public void loadGameItems() {

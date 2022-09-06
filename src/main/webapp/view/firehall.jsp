@@ -5,12 +5,7 @@
 </audio>
 <p>
     This path led you to the fire gates. <br>
-    Perhaps you would like to turn back, but the passage on which you came <br>
-    is blocked by a wall of fire.
-</p>
-<p>
-    And this wall will gradually approach you. <br>
-    You have no choice but to enter the Fire Gates.
+    The passage on which you came is blocked by a wall of fire.
 </p>
 <p>
     Also, various objects are scattered around you. You can take something:
@@ -23,6 +18,3 @@
     </c:forEach>
     <input type="submit" value="Take Selected">
 </form>
-<script>
-    setTimeout(function(){location.href="${pageContext.request.contextPath}/location/?loc="} , 20000);
-</script>
