@@ -23,12 +23,12 @@
     </tr>
     <tr>
         <td>
-            <c:set var="map" value="${inventory}" scope="request"/>
-            <c:if test="${map.size()!=0 && map!=null}">
+            <c:set var="inv" value="${inventory}" scope="request"/>
+            <c:if test="${inv!=null && inv.size()!=0}">
                 <div class="menu">
                     <button class="inventory">Inventory↓</button>
                     <div class="dropdown-child">
-                        <form action="${pageContext.request.contextPath}/takeitem" method="get">
+                        <form action="${pageContext.request.contextPath}/grabitem" method="get">
                             <c:forEach var="entry" items="${inventory}">
                                 <button type="submit" name="item" value="${entry.key}">${entry.value}</button>
                             </c:forEach>

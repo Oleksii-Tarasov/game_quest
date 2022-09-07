@@ -21,6 +21,7 @@ public class LocationHandler extends HttpServlet {
         HashMap gameLocations = gameMaster.getGameLocations();
 
         String location = req.getParameter("loc");
+        gameMaster.setCurrentLocation(location);
 
         req.setAttribute("contentBlock", gameLocations.get(location));
         req.setAttribute("nickname", gameMaster.getPlayerNickname());
@@ -28,6 +29,7 @@ public class LocationHandler extends HttpServlet {
 
         displayEndGameStatusIfItsOver(req, location);
         displayGameItemsIfItsPossible(gameMaster, req, location);
+        displayGameTries(gameMaster, req, location);
 
         getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
     }
@@ -43,6 +45,12 @@ public class LocationHandler extends HttpServlet {
     private void displayGameItemsIfItsPossible(GameMaster gameMaster, HttpServletRequest request, String location){
         if ("firehall".equals(location)) {
             request.setAttribute("gameItems", gameMaster.getGameItems());
+        }
+    }
+
+    private void displayGameTries(GameMaster gameMaster, HttpServletRequest request, String location) {
+        if ("bossarena".equals(location)) {
+            request.setAttribute("tries", gameMaster.getTries());
         }
     }
 }

@@ -4,11 +4,11 @@
     <source src="${pageContext.request.contextPath}/sound/">
 </audio>
 <p>
-    This path led you to the fire gates. <br>
-    The passage on which you came is blocked by a wall of fire.
+    The bridge behind you collapses and you find yourself in front of the <a href="${pageContext.request.contextPath}/location/?loc=bossarena">gate into the unknown.</a> <br>
+    You don`t know what`s waiting for you, but something tells you tha everything will not be easy.
 </p>
 <p>
-    Also, various objects are scattered around you. You can take something:
+    Various objects are scattered around you. You can take something.
 </p>
 <form action="${pageContext.request.contextPath}/grabitem" method="post">
     <c:forEach var="entry" items="${gameItems}">
@@ -16,5 +16,7 @@
             <input type="checkbox" name="item" value="${entry.key}"> ${entry.value}
         </div>
     </c:forEach>
-    <input type="submit" value="Take Selected">
+    <c:if test="${gameItems.size()!=0}">
+        <input type="submit" value="Take Selected">
+    </c:if>
 </form>

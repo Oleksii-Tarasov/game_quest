@@ -8,8 +8,7 @@
   "firebridge" : "/view/firebridge.jsp",
   "firecage" : "/view/firecage.jsp",
   "firehall" : "/view/firehall.jsp",
-
   "bossarena" : "/view/bossarena.jsp",
-  "hell" : "/view/hell.jsp",
+  "hellend" : "/view/hellend.jsp",
   "thronehall" : "/view/thronehall.jsp"
 }

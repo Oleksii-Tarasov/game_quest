@@ -10,14 +10,17 @@ import static ua.com.javarush.escape_quest.constant.ResourceFilePath.LOCATIONS_F
 
 public class GameMaster {
     private static GameMaster gameMaster;
-    private ItemLoader itemLoader;
+    private final ItemLoader itemLoader;
     private String playerNickname;
     private Map<String, String> playerInventory;
     private HashMap gameItems;
     private HashMap gameLocations;
+    private String currentLocation;
+    private int tries;
 
     private GameMaster() {
         itemLoader = new ItemLoader();
+        playerInventory = new HashMap<>();
     }
 
     public static GameMaster getGameMaster() {
@@ -39,23 +42,40 @@ public class GameMaster {
         return playerInventory;
     }
 
-    public void setPlayerInventory(Map<String, String> playerInventory) {
-        this.playerInventory = playerInventory;
+    public void addItemToPlayerInventory(String item, String itemDescription) {
+        playerInventory.put(item, itemDescription);
     }
 
     public HashMap getGameItems() {
         return this.gameItems;
     }
 
-    public void loadGameItems() {
-        this.gameItems = itemLoader.loadGameResourcesFromFile(ITEMS_FILE_PATH);
-    }
 
     public HashMap getGameLocations() {
         return gameLocations;
     }
 
+    public String getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public void setCurrentLocation(String currentLocation) {
+        this.currentLocation = currentLocation;
+    }
+
+    public int getTries() {
+        return tries;
+    }
+
+    public void setTries(int tries) {
+        this.tries = tries;
+    }
+
     public void loadGameLocations() {
         this.gameLocations = itemLoader.loadGameResourcesFromFile(LOCATIONS_FILE_PATH);
+    }
+
+    public void loadGameItems() {
+        this.gameItems = itemLoader.loadGameResourcesFromFile(ITEMS_FILE_PATH);
     }
 }

@@ -12,7 +12,7 @@
     <div id="clockdiv">
         <div><span class="seconds"></span></div>
     </div>
-seconds left to decide: <a href="${pageContext.request.contextPath}/location/?loc=firehall">run ahead</a> or stay put?
+    seconds left to decide: <a href="${pageContext.request.contextPath}/location/?loc=firehall">run ahead</a> or stay put?
 </p>
 <script>
     function getTimeRemaining(endtime) {
