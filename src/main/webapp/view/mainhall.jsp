@@ -1,5 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<img src="${pageContext.request.contextPath}/img/mainhall.jpg" alt="">
+<img src="${pageContext.request.contextPath}/img/mainhall.jpg">
 <audio autoplay>
     <source src="${pageContext.request.contextPath}/sound/mainhall.mp3">
 </audio>
@@ -11,11 +10,11 @@
 </p>
 <p>
     <a href="${pageContext.request.contextPath}/location/?loc=dungeon">Descend</a> into the gloomy dungeon of an old
-    prison? From which comes sounds like clattering jaws.
+    prison. From which comes sounds like clattering jaws.
 </p>
 <p>
     <a href="${pageContext.request.contextPath}/location/?loc=firebridge">Go down</a> a corridor with flames from an
-    unknown source playing on the walls?
+    unknown source playing on the walls.
 </p>
 <a href="${pageContext.request.contextPath}/location/?loc=garden">Climb up</a> the stairs
-    to the doorway from which bright daylight oozes into the prison?
+    to the doorway from which bright daylight oozes into the prison.

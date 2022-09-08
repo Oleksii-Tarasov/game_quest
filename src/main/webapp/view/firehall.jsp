@@ -4,7 +4,8 @@
     <source src="${pageContext.request.contextPath}/sound/">
 </audio>
 <p>
-    The bridge behind you collapses and you find yourself in front of the <a href="${pageContext.request.contextPath}/location/?loc=bossarena">gate into the unknown.</a> <br>
+    The bridge behind you collapses and you find yourself in front of the
+    <a href="${pageContext.request.contextPath}/location/?loc=bossarena">gate into the unknown.</a> <br>
     You don`t know what`s waiting for you, but something tells you tha everything will not be easy.
 </p>
 <p>

@@ -1,4 +1,7 @@
-<img src="${pageContext.request.contextPath}/img/lord2.gif" alt="">
+<img src="${pageContext.request.contextPath}/img/devil.gif" alt="">
+<audio autoplay>
+    <source src="${pageContext.request.contextPath}/sound/hellend.mp3">
+</audio>
 <div class="message">
     <p>
         ${message}
