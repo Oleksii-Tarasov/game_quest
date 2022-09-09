@@ -1,0 +1,28 @@
+{
+  "itemProperties" : [
+    {
+      "title" : "waterBucket",
+      "description" : "Bucket with water"
+    },
+    {
+      "title" : "threads",
+      "description" : "Bunch of threads"
+    },
+    {
+      "title" : "book",
+      "description" : "Poetry book"
+    },
+    {
+      "title" : "sword",
+      "description" : "Old Sword"
+    },
+    {
+      "title" : "pizza",
+      "description" : "Pizza slice"
+    },
+    {
+      "title" : "textbook",
+      "description" : "Front-end textbook"
+    }
+    ]
+}

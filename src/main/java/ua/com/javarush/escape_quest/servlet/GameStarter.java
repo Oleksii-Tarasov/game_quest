@@ -1,12 +1,14 @@
 package ua.com.javarush.escape_quest.servlet;
 
 import ua.com.javarush.escape_quest.model.GameMaster;
+import ua.com.javarush.escape_quest.model.Player;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("")
@@ -26,13 +28,20 @@ public class GameStarter extends HttpServlet {
             nickname = "Unknown Hero";
         }
 
-        GameMaster gameMaster = GameMaster.getGameMaster();
+        Player player = new Player(nickname);
+        player.setTries(3);
 
-        gameMaster.setPlayerNickname(nickname);
-        gameMaster.loadGameLocations();
-        gameMaster.loadGameItems();
-        gameMaster.setTries(3);
+        HttpSession session = req.getSession();
+        session.setAttribute("player", player);
+
+//        GameMaster gameMaster = GameMaster.getGameMaster();
+//        gameMaster.setPlayerNickname(nickname);
+//        gameMaster.loadGameLocations();
+//        gameMaster.loadGameItems();
+//        gameMaster.setTries(3);
 
         resp.sendRedirect(req.getContextPath() + "/location/?loc=prison");
     }
+
+
 }

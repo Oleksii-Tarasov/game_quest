@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <img src="${pageContext.request.contextPath}/img/firebridge.jpg" alt="">
 <audio autoplay>
-    <source src="${pageContext.request.contextPath}/sound/firehall.mp3">
+    <source src="${pageContext.request.contextPath}/sound/firebridge.mp3">
 </audio>
 <p>
     After passing through the corridor you find yourself on a bridge. <br>
