@@ -16,12 +16,12 @@ public class GameRestarter extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         GameMaster gameMaster = GameMaster.getGameMaster();
 
-        Map playerInventory = gameMaster.getPlayerInventory();
+//        Map playerInventory = gameMaster.getPlayerInventory();
+//
+//        if (playerInventory != null && !playerInventory.isEmpty()) {
+//            playerInventory.clear();
+//        }
 
-        if (playerInventory != null && !playerInventory.isEmpty()) {
-            playerInventory.clear();
-        }
-
-        resp.sendRedirect(req.getContextPath() + "/location/?loc=prison");
+        resp.sendRedirect(req.getContextPath() + "/location/?title=prison");
     }
 }

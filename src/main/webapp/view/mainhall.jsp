@@ -1,7 +1,3 @@
-<img src="${pageContext.request.contextPath}/img/mainhall.jpg">
-<audio autoplay>
-    <source src="${pageContext.request.contextPath}/sound/mainhall.mp3">
-</audio>
 <p>
     You are in the corridor of the cell block. There are three ways out of it.
 </p>
@@ -9,12 +5,12 @@
     It remains for you, ${nickname}, to listen to your intuition or the voice of reason and choose direction.
 </p>
 <p>
-    <a href="${pageContext.request.contextPath}/location/?loc=dungeon">Descend</a> into the gloomy dungeon of an old
+    <a href="${pageContext.request.contextPath}/location/?title=dungeon">Descend</a> into the gloomy dungeon of an old
     prison. From which comes sounds like clattering jaws.
 </p>
 <p>
-    <a href="${pageContext.request.contextPath}/location/?loc=firebridge">Go down</a> a corridor with flames from an
+    <a href="${pageContext.request.contextPath}/location/?title=firebridge">Go down</a> a corridor with flames from an
     unknown source playing on the walls.
 </p>
-<a href="${pageContext.request.contextPath}/location/?loc=garden">Climb up</a> the stairs
+<a href="${pageContext.request.contextPath}/location/?title=garden">Climb up</a> the stairs
     to the doorway from which bright daylight oozes into the prison.

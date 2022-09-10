@@ -16,30 +16,31 @@ import static ua.com.javarush.escape_quest.constant.ResourceFilePath.LOCATIONS_F
 @Data
 public class GameConstructor {
     private ResourceLoader resourceLoader;
-    private Map<String, Location> gameLocations;
-    private Map<String, Item> gameItems;
-
     public GameConstructor(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
     }
 
-    public void createLocations() {
-        gameLocations = new HashMap<>();
+    public Map<String, Location> createLocations() {
+        Map<String, Location> gameLocations = new HashMap<>();
         ModelConfig locationConfig = resourceLoader.loadResourcesFromFile(LOCATIONS_FILE_PATH);
 
         for (LocationProperties properties: locationConfig.getLocationProperties()) {
-            Location location = new Location(properties.getTitle(), properties.getPagePath(), properties.getImagePath(), properties.getSoundPath());
+            Location location = new Location(properties.getTitle(), properties.getStoryBlock(), properties.getImage(), properties.getSound(), properties.getItemsInLocation());
             gameLocations.put(properties.getTitle(), location);
         }
+
+        return gameLocations;
     }
 
-    public void createItems() {
-        gameItems = new HashMap<>();
+    public Map<String, Item> createItems() {
+        Map<String, Item> gameItems = new HashMap<>();
         ModelConfig itemConfig = resourceLoader.loadResourcesFromFile(ITEMS_FILE_PATH);
 
         for (ItemProperties properties: itemConfig.getItemProperties()) {
-            Item item = new Item(properties.getTitle(), properties.getDescription());
+            Item item = new Item(properties.getTitle(), properties.getDescription(), properties.getEffect());
             gameItems.put(properties.getTitle(), item);
         }
+
+        return gameItems;
     }
 }

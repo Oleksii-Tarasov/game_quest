@@ -1,7 +1,3 @@
-<img src="${pageContext.request.contextPath}/img/garden.gif" alt="">
-<audio autoplay>
-  <source src="${pageContext.request.contextPath}/sound/garden.mp3">
-</audio>
 <p>
   You pass through the light and get into the picturesque garden.
 </p>

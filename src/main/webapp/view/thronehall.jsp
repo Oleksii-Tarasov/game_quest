@@ -1,7 +1,3 @@
-<img id="change_image" src="${pageContext.request.contextPath}/img/steam.gif" alt="">
-<audio autoplay>
-    <source src="${pageContext.request.contextPath}/sound/thronehall.mp3">
-</audio>
 <p>
     You put out the hellfire with water from the bucket and the Lord of the Underworld turns into steam.
 </p>

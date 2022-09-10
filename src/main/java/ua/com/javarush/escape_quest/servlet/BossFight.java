@@ -2,6 +2,7 @@ package ua.com.javarush.escape_quest.servlet;
 
 import ua.com.javarush.escape_quest.model.GameMaster;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,33 +14,39 @@ import static ua.com.javarush.escape_quest.constant.BossFightMessage.*;
 
 @WebServlet("/bossfight/use")
 public class BossFight extends HttpServlet {
+    private GameMaster gameMaster;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        gameMaster = (GameMaster) config.getServletContext().getAttribute("gameMaster");
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String item = req.getParameter("item");
 
         if ("waterBucket".equals(item)) {
-            resp.sendRedirect(req.getContextPath() + "/location/?loc=thronehall");
+            resp.sendRedirect(req.getContextPath() + "/location/?title=thronehall");
             return;
         }
 
-        String reaction = getReactionAfterAttackOnBoss(item);
-        req.getSession().setAttribute("message", reaction);
+        String effect = gameMaster.attackBossAndGetResult(item);
+        req.getSession().setAttribute("effect", effect);
 
-        GameMaster gameMaster = GameMaster.getGameMaster();
-        gameMaster.getPlayerInventory().remove(item);
+        gameMaster.isCharacterLoser();
 
-        int tries = gameMaster.getTries();
+        int tries = gameMaster.getCharacter().getAmountOfLives();
         tries--;
-        gameMaster.setTries(tries);
+        gameMaster.getCharacter().setAmountOfLives(tries);
 
-        if (tries == 0 || gameMaster.getPlayerInventory().isEmpty()) {
-            resp.sendRedirect(req.getContextPath() + "/location/?loc=hellend");
+        if (tries == 0 || gameMaster.getCharacter().getInventory().isEmpty()) {
+            resp.sendRedirect(req.getContextPath() + "/location/?title=hellend");
             return;
         }
 
-        resp.sendRedirect(req.getContextPath() + "/location/?loc=bossarena");
+        resp.sendRedirect(req.getContextPath() + "/location/?title=bossarena");
     }
-
     private String getReactionAfterAttackOnBoss(String item) {
         return switch (item) {
             case "threads" -> REACTION_TO_THREADS;
@@ -50,4 +57,5 @@ public class BossFight extends HttpServlet {
             default -> "";
         };
     }
+
 }

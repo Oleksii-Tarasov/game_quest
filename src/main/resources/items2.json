@@ -2,27 +2,33 @@
   "itemProperties" : [
     {
       "title" : "waterBucket",
-      "description" : "Bucket with water"
+      "description" : "Bucket with water",
+      "effect" : ""
     },
     {
       "title" : "threads",
-      "description" : "Bunch of threads"
+      "description" : "Bunch of threads",
+      "effect" : "You chose thread to attack? You really need to rethink your plan"
     },
     {
       "title" : "book",
-      "description" : "Poetry book"
+      "description" : "Poetry book",
+      "effect" : "You recite a verse from a book, but the Lord of the Underworld does not get kinder"
     },
     {
       "title" : "sword",
-      "description" : "Old Sword"
+      "description" : "Old Sword",
+      "effect" : "The old sword is melted, the Lord of the Underworld is laughing at your pathetic attempt"
     },
     {
       "title" : "pizza",
-      "description" : "Pizza slice"
+      "description" : "Pizza slice",
+      "effect" : "Lord of the Underworld is not hungry"
     },
     {
       "title" : "textbook",
-      "description" : "Front-end textbook"
+      "description" : "Front-end textbook",
+      "effect" : "Front-end textbook burns in hellfire. For some reason, an unhealthy smile appears on your face"
     }
     ]
 }

@@ -6,4 +6,5 @@ import lombok.Data;
 public class ItemProperties {
     private String title;
     private String description;
+    private String effect;
 }

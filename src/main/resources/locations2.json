@@ -2,69 +2,95 @@
   "locationProperties" : [
     {
       "title" : "prison",
-      "pagePath" : "/view/prison.jsp",
-      "imagePath" : "/img/prison.jpg",
-      "soundPath" : "/sound/prison.mp3"
+      "storyBlock": "/view/prison.jsp",
+      "image" : "/img/prison.jpg",
+      "sound" : "/sound/prison.mp3",
+      "itemsInLocation" : []
     },
     {
       "title" : "mainhall",
-      "pagePath" : "/view/mainhall.jsp",
-      "imagePath" : "/img/mainhall.jpg",
-      "soundPath" : "/sound/mainhall.mp3"
+      "storyBlock" : "/view/mainhall.jsp",
+      "image" : "/img/mainhall.jpg",
+      "sound" : "/sound/mainhall.mp3",
+      "itemsInLocation" : [
+        "sword"
+      ]
     },
     {
       "title" : "cage",
-      "pagePath" : "/view/cage.jsp",
-      "imagePath" : "/img/cage.jpg",
-      "soundPath" : "/sound/cage.mp3"
+      "storyBlock" : "/view/cage.jsp",
+      "image" : "/img/cage.jpg",
+      "sound" : "/sound/cage.mp3",
+      "itemsInLocation" : []
     },
     {
       "title" : "cellar",
-      "pagePath" : "/view/cellar.jsp",
-      "imagePath" : "/img/cellar.gif",
-      "soundPath" : "/sound/cry.mp3"
+      "storyBlock" : "/view/cellar.jsp",
+      "image" : "/img/cellar.gif",
+      "sound" : "/sound/cry.mp3",
+      "itemsInLocation" : []
     },
     {
       "title" : "dungeon",
-      "pagePath" : "/view/dungeon.jsp",
-      "imagePath" : "/img/dungeon.gif",
-      "soundPath" : "/sound/dungeon.mp3"
+      "storyBlock" : "/view/dungeon.jsp",
+      "image" : "/img/dungeon.jpg",
+      "sound" : "/sound/dungeon.mp3",
+      "itemsInLocation" : [
+        "waterBucket",
+        "book"
+      ]
     },
     {
       "title" : "firebridge",
-      "pagePath" : "/view/firebridge.jsp",
-      "imagePath" : "/img/firebridge.jpg",
-      "soundPath" : "/sound/firebridge.mp3"
+      "storyBlock": "/view/firebridge.jsp",
+      "image": "/img/firebridge.jpg",
+      "sound": "/sound/firebridge.mp3",
+      "itemsInLocation" : []
     },
     {
       "title" : "firecage",
-      "pagePath" : "/view/firecage.jsp",
-      "imagePath" : "/img/firecage.gif",
-      "soundPath" : "/sound/firecage.mp3"
+      "storyBlock": "/view/firecage.jsp",
+      "image": "/img/firecage.gif",
+      "sound": "/sound/firecage.mp3",
+      "itemsInLocation" : []
     },
     {
       "title" : "firehall",
-      "pagePath" : "/view/firehall.jsp",
-      "imagePath" : "/img/firehall.jpg",
-      "soundPath" : "/sound/firehall.mp3"
+      "storyBlock": "/view/firehall.jsp",
+      "image": "/img/firehall.jpg",
+      "sound": "/sound/firehall.mp3",
+      "itemsInLocation" : [
+        "pizza",
+        "textbook"
+      ]
     },
     {
       "title" : "garden",
-      "pagePath" : "/view/garden.jsp",
-      "imagePath" : "/img/garden.gif",
-      "soundPath" : "/sound/garden.mp3"
+      "storyBlock": "/view/garden.jsp",
+      "image": "/img/garden.gif",
+      "sound": "/sound/garden.mp3",
+      "itemsInLocation" : []
     },
     {
       "title" : "hellend",
-      "pagePath" : "/view/hellend.jsp",
-      "imagePath" : "/img/devil.gif",
-      "soundPath" : "/sound/hellend.mp3"
+      "storyBlock": "/view/hellend.jsp",
+      "image": "/img/devil.gif",
+      "sound": "/sound/hellend.mp3",
+      "itemsInLocation" : []
     },
     {
       "title" : "thronehall",
-      "pagePath" : "/view/thronehall.jsp",
-      "imagePath" : "/img/steam.gif",
-      "soundPath" : "/sound/thronehall.mp3"
+      "storyBlock": "/view/thronehall.jsp",
+      "image": "/img/steam.gif",
+      "sound": "/sound/thronehall.mp3",
+      "itemsInLocation" : []
+    },
+    {
+      "title" : "bossarena",
+      "storyBlock": "/view/bossarena.jsp",
+      "image": "/img/bossarena.jpg",
+      "sound": "/sound/bossarena.mp3",
+      "itemsInLocation" : []
     }
   ]
 }
