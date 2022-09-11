@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
 @WebServlet("")
 public class GameStart extends HttpServlet {
     private GameMaster gameMaster;
@@ -37,6 +36,6 @@ public class GameStart extends HttpServlet {
         gameMaster.createCharacter(nickname);
         gameMaster.createGameWorld();
 
-        resp.sendRedirect("/location/?title=prison");
+        resp.sendRedirect(req.getContextPath()  + "/location/?title=prison");
     }
 }

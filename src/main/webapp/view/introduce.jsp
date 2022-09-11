@@ -2,7 +2,7 @@
     I present to your attention a visual game-quest,<br>
     the history of which develops depending on the decisions made by the character.<br><br>
     Enter your name, hero:
-    <form action="${pageContext.request.contextPath}" method="post">
+    <form action="${pageContext.request.contextPath}/" method="post">
         <input type="text" name="nickname" required minlength="3" maxlength="8" value="<enter your name>"
                onfocus="this.value=''">
         <br> and <br>

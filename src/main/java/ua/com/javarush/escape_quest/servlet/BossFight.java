@@ -28,17 +28,17 @@ public class BossFight extends HttpServlet {
         req.getSession().setAttribute("effect", effect);
 
         if (gameMaster.getCharacter().isWinner()) {
-            resp.sendRedirect("/location/?title=thronehall");
+            resp.sendRedirect(req.getContextPath() + "/location/?title=thronehall");
             return;
         }
 
         if (!gameMaster.canCharacterFight()) {
-            resp.sendRedirect("/location/?title=hellend");
+            resp.sendRedirect(req.getContextPath() + "/location/?title=hellend");
             return;
         }
 
         req.getSession().setAttribute("tries", gameMaster.getCharacter().getAmountOfLives());
 
-        resp.sendRedirect("/location/?title=bossarena");
+        resp.sendRedirect(req.getContextPath() + "/location/?title=bossarena");
     }
 }

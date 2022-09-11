@@ -27,27 +27,27 @@ public class ItemServlet extends HttpServlet {
         String locationTitle = gameMaster.getCharacter().getCurrentLocation();
 
         if (items == null) {
-            resp.sendRedirect("/location/?title=" + locationTitle);
+            resp.sendRedirect(req.getContextPath() + "/location/?title=" + locationTitle);
             return;
         }
 
         gameMaster.addItemsToCharacterInventory(items);
         gameMaster.removeItemsFromLocation(locationTitle, items);
 
-        resp.sendRedirect("/location/?title=" + locationTitle);
+        resp.sendRedirect(req.getContextPath() + "/location/?title=" + locationTitle);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         String locationTitle = gameMaster.getCharacter().getCurrentLocation();
 
         if ("bossarena".equals(locationTitle)) {
-            String item = request.getParameter("item");
-            response.sendRedirect("/bossfight/use?item=" + item);
+            String item = req.getParameter("item");
+            resp.sendRedirect(req.getContextPath() + "/bossfight/use?item=" + item);
             return;
         }
 
-        response.sendRedirect("/location/?title=" + locationTitle);
+        resp.sendRedirect(req.getContextPath() + "/location/?title=" + locationTitle);
     }
 }
