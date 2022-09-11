@@ -1,6 +1,6 @@
 package ua.com.javarush.escape_quest.servlet;
 
-import ua.com.javarush.escape_quest.model.GameMaster;
+import ua.com.javarush.escape_quest.service.GameMaster;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;

@@ -1,14 +1,96 @@
 {
-  "prison" : "/view/prison.jsp",
-  "mainhall" : "/view/mainhall.jsp",
-  "cage" : "/view/cage.jsp",
-  "garden" : "/view/garden.jsp",
-  "dungeon" : "/view/dungeon.jsp",
-  "cellar" : "/view/cellar.jsp",
-  "firebridge" : "/view/firebridge.jsp",
-  "firecage" : "/view/firecage.jsp",
-  "firehall" : "/view/firehall.jsp",
-  "bossarena" : "/view/bossarena.jsp",
-  "hellend" : "/view/hellend.jsp",
-  "thronehall" : "/view/thronehall.jsp"
+  "locationProperties" : [
+    {
+      "title" : "prison",
+      "storyBlock": "/view/prison.jsp",
+      "image" : "/img/prison.jpg",
+      "sound" : "/sound/prison.mp3",
+      "itemsInLocation" : []
+    },
+    {
+      "title" : "mainhall",
+      "storyBlock" : "/view/mainhall.jsp",
+      "image" : "/img/mainhall.jpg",
+      "sound" : "/sound/mainhall.mp3",
+      "itemsInLocation" : [
+        "sword"
+      ]
+    },
+    {
+      "title" : "cage",
+      "storyBlock" : "/view/cage.jsp",
+      "image" : "/img/cage.jpg",
+      "sound" : "/sound/cage.mp3",
+      "itemsInLocation" : []
+    },
+    {
+      "title" : "cellar",
+      "storyBlock" : "/view/cellar.jsp",
+      "image" : "/img/cellar.gif",
+      "sound" : "/sound/cry.mp3",
+      "itemsInLocation" : []
+    },
+    {
+      "title" : "dungeon",
+      "storyBlock" : "/view/dungeon.jsp",
+      "image" : "/img/dungeon.jpg",
+      "sound" : "/sound/dungeon.mp3",
+      "itemsInLocation" : [
+        "waterBucket",
+        "book"
+      ]
+    },
+    {
+      "title" : "firebridge",
+      "storyBlock": "/view/firebridge.jsp",
+      "image": "/img/firebridge.jpg",
+      "sound": "/sound/firebridge.mp3",
+      "itemsInLocation" : []
+    },
+    {
+      "title" : "firecage",
+      "storyBlock": "/view/firecage.jsp",
+      "image": "/img/firecage.gif",
+      "sound": "/sound/firecage.mp3",
+      "itemsInLocation" : []
+    },
+    {
+      "title" : "firehall",
+      "storyBlock": "/view/firehall.jsp",
+      "image": "/img/firehall.jpg",
+      "sound": "/sound/firehall.mp3",
+      "itemsInLocation" : [
+        "pizza",
+        "textbook"
+      ]
+    },
+    {
+      "title" : "garden",
+      "storyBlock": "/view/garden.jsp",
+      "image": "/img/garden.gif",
+      "sound": "/sound/garden.mp3",
+      "itemsInLocation" : []
+    },
+    {
+      "title" : "hellend",
+      "storyBlock": "/view/hellend.jsp",
+      "image": "/img/devil.gif",
+      "sound": "/sound/hellend.mp3",
+      "itemsInLocation" : []
+    },
+    {
+      "title" : "thronehall",
+      "storyBlock": "/view/thronehall.jsp",
+      "image": "/img/steam.gif",
+      "sound": "/sound/thronehall.mp3",
+      "itemsInLocation" : []
+    },
+    {
+      "title" : "bossarena",
+      "storyBlock": "/view/bossarena.jsp",
+      "image": "/img/bossarena.jpg",
+      "sound": "/sound/bossarena.mp3",
+      "itemsInLocation" : []
+    }
+  ]
 }

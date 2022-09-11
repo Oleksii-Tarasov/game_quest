@@ -19,7 +19,7 @@
 <table>
     <tr>
         <td>
-            <img src="${pageContext.request.contextPath}${image}" alt="">
+            <img id="change_image" src="${pageContext.request.contextPath}${image}" alt="">
         </td>
     </tr>
     <tr>
@@ -46,8 +46,7 @@
     </tr>
     <tr>
         <td>
-            <c:set var="inv" value="${inventory}" scope="request"/>
-            <c:if test="${inv!=null && inv.size()!=0}">
+            <c:if test="${inventory!=null && inventory.size()!=0}">
                 <div class="menu">
                     <button class="inventory">Inventory↓</button>
                     <div class="dropdown-child">

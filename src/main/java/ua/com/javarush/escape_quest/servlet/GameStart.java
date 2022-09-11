@@ -1,9 +1,8 @@
 package ua.com.javarush.escape_quest.servlet;
 
-import ua.com.javarush.escape_quest.model.GameMaster;
+import ua.com.javarush.escape_quest.service.GameMaster;
 
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,14 +12,13 @@ import java.io.IOException;
 
 
 @WebServlet("")
-public class GameStarter extends HttpServlet {
+public class GameStart extends HttpServlet {
     private GameMaster gameMaster;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        ServletContext servletContext = config.getServletContext();
-        gameMaster = (GameMaster) servletContext.getAttribute("gameMaster");
+        gameMaster = (GameMaster) config.getServletContext().getAttribute("gameMaster");
     }
 
     @Override
@@ -32,17 +30,13 @@ public class GameStarter extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         String nickname = req.getParameter("nickname");
-
-        if (("<enter your name>").equals(nickname)) {
-            nickname = "Unknown Hero";
-        }
 
         gameMaster.createCharacter(nickname);
         gameMaster.createGameWorld();
 
-        resp.sendRedirect(req.getContextPath() + "/location/?title=prison");
+        resp.sendRedirect("/location/?title=prison");
     }
 }

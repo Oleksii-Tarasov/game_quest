@@ -1,10 +1,9 @@
 package ua.com.javarush.escape_quest.servlet;
 
-import ua.com.javarush.escape_quest.model.GameMaster;
 import ua.com.javarush.escape_quest.model.Location;
+import ua.com.javarush.escape_quest.service.GameMaster;
 
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,14 +21,16 @@ public class LocationServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        ServletContext servletContext = config.getServletContext();
-        gameMaster = (GameMaster) servletContext.getAttribute("gameMaster");
+        gameMaster = (GameMaster) config.getServletContext().getAttribute("gameMaster");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String locationTitle = req.getParameter("title");
+
         Location currentLocation = gameMaster.getGameLocations().get(locationTitle);
+
+        displayEndGameStatusIfItsOver(req, locationTitle);
 
         req.setAttribute("image", currentLocation.getImage());
         req.setAttribute("sound", currentLocation.getSound());
@@ -37,8 +38,7 @@ public class LocationServlet extends HttpServlet {
         req.setAttribute("nickname", gameMaster.getCharacter().getNickname());
         req.setAttribute("inventory", gameMaster.showCharacterInventory());
         req.setAttribute("itemsInLocation", gameMaster.showItemsInLocation(locationTitle));
-
-        displayEndGameStatusIfItsOver(req, locationTitle);
+        req.getSession().setAttribute("tries", gameMaster.countTries());
 
         gameMaster.rememberCurrentLocation(locationTitle);
 
@@ -48,8 +48,10 @@ public class LocationServlet extends HttpServlet {
     private void displayEndGameStatusIfItsOver(HttpServletRequest request, String locationTitle) {
         if (BAD_ENDS.contains(locationTitle)) {
             request.setAttribute("isGameOver", true);
+            gameMaster.dontShowCharacterInventory();
         } else if (GOOD_ENDS.contains(locationTitle)) {
             request.setAttribute("isWinner", true);
+            gameMaster.dontShowCharacterInventory();
         }
     }
 }

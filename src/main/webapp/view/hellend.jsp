@@ -1,6 +1,9 @@
+<audio autoplay>
+    <source src="${pageContext.request.contextPath}/sound/laugh.mp3">
+</audio>
 <div class="message">
     <p>
-        ${message}
+        ${effect}
     </p>
 </div>
 <p>

@@ -2,7 +2,7 @@
     You are in the corridor of the cell block. There are three ways out of it.
 </p>
 <p>
-    It remains for you, ${nickname}, to listen to your intuition or the voice of reason and choose direction.
+    All you have, ${nickname}, is to listen to your intuition or the voice of reason and choose direction.
 </p>
 <p>
     <a href="${pageContext.request.contextPath}/location/?title=dungeon">Descend</a> into the gloomy dungeon of an old

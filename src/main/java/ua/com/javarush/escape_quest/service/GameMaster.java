@@ -1,14 +1,13 @@
-package ua.com.javarush.escape_quest.model;
+package ua.com.javarush.escape_quest.service;
 
 import lombok.Data;
-import ua.com.javarush.escape_quest.service.GameConstructor;
-import ua.com.javarush.escape_quest.service.ResourceLoader;
+import ua.com.javarush.escape_quest.model.Character;
+import ua.com.javarush.escape_quest.model.Item;
+import ua.com.javarush.escape_quest.model.Location;
 
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import static ua.com.javarush.escape_quest.constant.BossFightMessage.*;
 
 @Data
 public class GameMaster {
@@ -34,7 +33,12 @@ public class GameMaster {
     }
 
     public void createCharacter(String nickname) {
+        if (("<enter your name>").equals(nickname)) {
+            nickname = "Unknown Hero";
+        }
+
         int amountOfLives = 3;
+
         character = new Character(nickname, amountOfLives);
     }
 
@@ -57,14 +61,6 @@ public class GameMaster {
         character.setCurrentLocation(locationTitle);
     }
 
-    public Map<String, String> showCharacterInventory() {
-        return character.getInventory().entrySet().stream()
-                .collect(Collectors.toMap(
-                        item -> item.getValue().getTitle(),
-                        item -> item.getValue().getDescription())
-                );
-    }
-
     public Map<String, String> showItemsInLocation(String locationTitle) {
         return gameLocations.get(locationTitle).getItemsInLocation().stream()
                 .collect(Collectors.toMap(
@@ -73,19 +69,47 @@ public class GameMaster {
                 );
     }
 
-    public String attackBossAndGetResult(String itemTitle) {
-        character.getInventory().remove(itemTitle);
-        Item item = gameItems.get(itemTitle);
-
-        return item.getEffect();
+    public Map<String, String> showCharacterInventory() {
+        return character.getInventory().entrySet().stream()
+                .collect(Collectors.toMap(
+                        item -> item.getValue().getTitle(),
+                        item -> item.getValue().getDescription())
+                );
     }
 
-    public boolean isCharacterLoser() {
+    public void dontShowCharacterInventory() {
+        character.getInventory().clear();
+    }
+
+    public String attackBossAndGetResult(String itemTitle) {
+        Item item = gameItems.get(itemTitle);
+
+        if ("waterBucket".equals(itemTitle)) {
+            character.setWinner(true);
+            return item.getEffect();
+        }
+
         int amountOfLives = character.getAmountOfLives();
         amountOfLives--;
         character.setAmountOfLives(amountOfLives);
 
-        return amountOfLives == 0 || character.getInventory().isEmpty();
+        character.getInventory().remove(itemTitle);
+
+        return item.getEffect();
     }
 
+    public boolean canCharacterFight() {
+        return countTries() > 0 && !character.getInventory().isEmpty();
+    }
+
+    public int countTries() {
+        int tries = character.getInventory().size();
+        int amountOfLives = character.getAmountOfLives();
+
+        if (tries < amountOfLives) {
+            amountOfLives = tries;
+        }
+
+        return amountOfLives;
+    }
 }

@@ -1,6 +1,6 @@
 package ua.com.javarush.escape_quest.servlet;
 
-import ua.com.javarush.escape_quest.model.GameMaster;
+import ua.com.javarush.escape_quest.service.GameMaster;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "ItemServlet", value = "/grabitem")
+@WebServlet(value = "/grabitem")
 public class ItemServlet extends HttpServlet {
     private GameMaster gameMaster;
 
@@ -27,14 +27,14 @@ public class ItemServlet extends HttpServlet {
         String locationTitle = gameMaster.getCharacter().getCurrentLocation();
 
         if (items == null) {
-            resp.sendRedirect(req.getContextPath() + "/location/?title=" + locationTitle);
+            resp.sendRedirect("/location/?title=" + locationTitle);
             return;
         }
 
         gameMaster.addItemsToCharacterInventory(items);
         gameMaster.removeItemsFromLocation(locationTitle, items);
 
-        resp.sendRedirect(req.getContextPath() + "/location/?title=" + locationTitle);
+        resp.sendRedirect("/location/?title=" + locationTitle);
     }
 
     @Override
@@ -44,10 +44,10 @@ public class ItemServlet extends HttpServlet {
 
         if ("bossarena".equals(locationTitle)) {
             String item = request.getParameter("item");
-            response.sendRedirect(request.getContextPath() + "/bossfight/use?item=" + item);
+            response.sendRedirect("/bossfight/use?item=" + item);
             return;
         }
 
-        response.sendRedirect(request.getContextPath() + "/location/?title=" + locationTitle);
+        response.sendRedirect("/location/?title=" + locationTitle);
     }
 }

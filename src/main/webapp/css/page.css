@@ -1,3 +1,5 @@
+/*body block*/
+
 body {
     background-color: #333131;
     -webkit-touch-callout: none; /* iOS Safari */
@@ -13,6 +15,11 @@ header {
     color: #a4711b;
 }
 
+a {
+    color: darkgray;
+    text-decoration: none;
+}
+
 table {
     margin: auto;
     padding-top: 15px;
@@ -26,6 +33,7 @@ td {
     padding-top: 4px;
 }
 
+/*content block*/
 
 img {
     margin: auto;
@@ -43,6 +51,50 @@ img {
     font-size: x-large;
     font-family: "Ink Free", serif;
 }
+
+.introduceContentBlock {
+    padding-top: 20px;
+    text-align: center;
+    font-size: xx-large;
+    font-family: Constantia, serif;
+    color: #a4711b;
+    float: none;
+    margin: auto;
+}
+
+.message {
+    font-family: Constantia, serif;
+    font-size: x-large;
+    text-align: center;
+    color: grey;
+}
+
+#clockdiv{
+    font-family: Constantia, serif;
+    color: red;
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.loserLabel {
+    border-radius: 8px;
+    color: #a50e0e;
+    font-size: 40px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.winnerLabel {
+    border-radius: 8px;
+    color: cornflowerblue;
+    font-size: 40px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+/*input block*/
 
 input[type=text] {
     width: 150px;
@@ -64,6 +116,8 @@ input[type=submit] {
     cursor: pointer;
 }
 
+/*menu block*/
+
 .checkBox {
     display: inline;
     background: #333131;
@@ -72,11 +126,6 @@ input[type=submit] {
     font-family: Constantia, serif;
     font-size: large;
     text-align: justify;
-}
-
-a {
-    color: darkgray;
-    text-decoration: none;
 }
 
 .inventory {
@@ -122,6 +171,8 @@ a {
     cursor: grab;
 }
 
+/*button block*/
+
 button {
     font-size: x-large;
     font-family: Constantia, serif;
@@ -132,51 +183,8 @@ button {
     cursor: pointer;
 }
 
-.loserLabel {
-    border-radius: 8px;
-    color: #a50e0e;
-    font-size: 40px;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-}
-
-.winnerLabel {
-    border-radius: 8px;
-    color: cornflowerblue;
-    font-size: 40px;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-}
-
 .startButton {
     margin: auto;
     text-align: center;
     padding-top: 20px;
-}
-
-.introduceContentBlock {
-    padding-top: 20px;
-    text-align: center;
-    font-size: xx-large;
-    font-family: Constantia, serif;
-    color: #a4711b;
-
-    float: none;
-    margin: auto;
-}
-
-.message {
-    font-family: Constantia, serif;
-    font-size: x-large;
-    text-align: left;
-    color: grey;
-}
-
-#clockdiv{
-    font-family: Constantia, serif;
-    color: red;
-    display: inline-block;
-    font-weight: 100;
-    text-align: center;
-    font-size: xx-large;
 }
