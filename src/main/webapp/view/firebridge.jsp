@@ -7,7 +7,7 @@
     <div id="clockdiv">
         <div><span class="seconds"></span></div>
     </div>
-    seconds left to decide: <a href="${pageContext.request.contextPath}/location/?title=firehall">run ahead</a> or stay put?
+    seconds left to decide: <a href="${pageContext.request.contextPath}/location/?id=firehall">run ahead</a> or stay put?
 </p>
 <script>
     function getTimeRemaining(endtime) {
@@ -30,7 +30,7 @@
             secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
 
             if (t.total <= 0) {
-                location.href="${pageContext.request.contextPath}/location/?title=firecage"
+                location.href="${pageContext.request.contextPath}/location/?id=firecage"
             }
         }
 

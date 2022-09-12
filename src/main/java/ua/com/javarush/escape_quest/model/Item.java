@@ -4,12 +4,12 @@ import lombok.Data;
 
 @Data
 public class Item {
-    private String title;
+    private String itemId;
     private String description;
     private String effect;
 
-    public Item(String title, String description, String effect) {
-        this.title = title;
+    public Item(String itemId, String description, String effect) {
+        this.itemId = itemId;
         this.description = description;
         this.effect = effect;
     }

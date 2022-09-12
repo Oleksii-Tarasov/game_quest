@@ -6,14 +6,14 @@ import java.util.List;
 
 @Data
 public class Location {
-    private String title;
+    private String locationId;
     private String storyBlock;
     private String image;
     private String sound;
     private List<String> itemsInLocation;
 
-    public Location(String title, String storyBlock, String image, String sound, List<String> itemsInLocation) {
-        this.title = title;
+    public Location(String locationId, String storyBlock, String image, String sound, List<String> itemsInLocation) {
+        this.locationId = locationId;
         this.storyBlock = storyBlock;
         this.image = image;
         this.sound = sound;

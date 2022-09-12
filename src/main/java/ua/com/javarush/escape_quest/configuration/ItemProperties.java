@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ItemProperties {
-    private String title;
+    private String itemId;
     private String description;
     private String effect;
 }

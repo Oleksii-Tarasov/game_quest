@@ -25,8 +25,8 @@ public class GameConstructor {
         ModelConfig locationConfig = resourceLoader.loadResourcesFromFile(LOCATIONS_FILE_PATH);
 
         for (LocationProperties properties: locationConfig.getLocationProperties()) {
-            Location location = new Location(properties.getTitle(), properties.getStoryBlock(), properties.getImage(), properties.getSound(), properties.getItemsInLocation());
-            gameLocations.put(properties.getTitle(), location);
+            Location location = new Location(properties.getLocationId(), properties.getStoryBlock(), properties.getImage(), properties.getSound(), properties.getItemsInLocation());
+            gameLocations.put(properties.getLocationId(), location);
         }
 
         return gameLocations;
@@ -37,8 +37,8 @@ public class GameConstructor {
         ModelConfig itemConfig = resourceLoader.loadResourcesFromFile(ITEMS_FILE_PATH);
 
         for (ItemProperties properties: itemConfig.getItemProperties()) {
-            Item item = new Item(properties.getTitle(), properties.getDescription(), properties.getEffect());
-            gameItems.put(properties.getTitle(), item);
+            Item item = new Item(properties.getItemId(), properties.getDescription(), properties.getEffect());
+            gameItems.put(properties.getItemId(), item);
         }
 
         return gameItems;

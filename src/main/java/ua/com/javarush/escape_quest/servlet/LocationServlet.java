@@ -26,30 +26,32 @@ public class LocationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String locationTitle = req.getParameter("title");
+        String locationId = req.getParameter("id");
 
-        Location currentLocation = gameMaster.getGameLocations().get(locationTitle);
+        Location currentLocation = gameMaster.getGameLocations().get(locationId);
 
-        displayEndGameStatusIfItsOver(req, locationTitle);
+        displayEndGameStatusIfItsOver(req, locationId);
+
+        String testName = gameMaster.getCharacter().getNickname();
 
         req.setAttribute("image", currentLocation.getImage());
         req.setAttribute("sound", currentLocation.getSound());
         req.setAttribute("storyBlock", currentLocation.getStoryBlock());
         req.setAttribute("nickname", gameMaster.getCharacter().getNickname());
         req.setAttribute("inventory", gameMaster.showCharacterInventory());
-        req.setAttribute("itemsInLocation", gameMaster.showItemsInLocation(locationTitle));
+        req.setAttribute("itemsInLocation", gameMaster.showItemsInLocation(locationId));
         req.getSession().setAttribute("tries", gameMaster.countTries());
 
-        gameMaster.rememberCurrentLocation(locationTitle);
+        gameMaster.rememberCurrentLocation(locationId);
 
         getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 
-    private void displayEndGameStatusIfItsOver(HttpServletRequest request, String locationTitle) {
-        if (BAD_ENDS.contains(locationTitle)) {
+    private void displayEndGameStatusIfItsOver(HttpServletRequest request, String locationId) {
+        if (BAD_ENDS.contains(locationId)) {
             request.setAttribute("isGameOver", true);
             gameMaster.dontShowCharacterInventory();
-        } else if (GOOD_ENDS.contains(locationTitle)) {
+        } else if (GOOD_ENDS.contains(locationId)) {
             request.setAttribute("isWinner", true);
             gameMaster.dontShowCharacterInventory();
         }

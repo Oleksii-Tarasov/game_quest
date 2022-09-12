@@ -18,7 +18,7 @@
     but you come empty-handed and your fate is sealed...await
     <script>
         setTimeout(function(){
-            window.location.href = '${pageContext.request.contextPath}/location/?title=hellend';
+            window.location.href = '${pageContext.request.contextPath}/location/?id=hellend';
         }, 15000);
     </script>
 </c:if>

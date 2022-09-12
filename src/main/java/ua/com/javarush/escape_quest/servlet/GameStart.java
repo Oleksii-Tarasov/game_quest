@@ -36,6 +36,6 @@ public class GameStart extends HttpServlet {
         gameMaster.createCharacter(nickname);
         gameMaster.createGameWorld();
 
-        resp.sendRedirect(req.getContextPath()  + "/location/?title=prison");
+        resp.sendRedirect(req.getContextPath()  + "/location/?id=prison");
     }
 }

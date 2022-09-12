@@ -6,7 +6,7 @@ import java.util.List;
 
 @Data
 public class LocationProperties {
-    private String title;
+    private String locationId;
     private String storyBlock;
     private String image;
     private String sound;

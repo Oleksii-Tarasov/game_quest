@@ -24,30 +24,30 @@ public class ItemServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String[] items = req.getParameterValues("item");
 
-        String locationTitle = gameMaster.getCharacter().getCurrentLocation();
+        String locationId = gameMaster.getCharacter().getCurrentLocation();
 
         if (items == null) {
-            resp.sendRedirect(req.getContextPath() + "/location/?title=" + locationTitle);
+            resp.sendRedirect(req.getContextPath() + "/location/?id=" + locationId);
             return;
         }
 
         gameMaster.addItemsToCharacterInventory(items);
-        gameMaster.removeItemsFromLocation(locationTitle, items);
+        gameMaster.removeItemsFromLocation(locationId, items);
 
-        resp.sendRedirect(req.getContextPath() + "/location/?title=" + locationTitle);
+        resp.sendRedirect(req.getContextPath() + "/location/?id=" + locationId);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        String locationTitle = gameMaster.getCharacter().getCurrentLocation();
+        String locationId = gameMaster.getCharacter().getCurrentLocation();
 
-        if ("bossarena".equals(locationTitle)) {
+        if ("bossarena".equals(locationId)) {
             String item = req.getParameter("item");
             resp.sendRedirect(req.getContextPath() + "/bossfight/use?item=" + item);
             return;
         }
 
-        resp.sendRedirect(req.getContextPath() + "/location/?title=" + locationTitle);
+        resp.sendRedirect(req.getContextPath() + "/location/?id=" + locationId);
     }
 }

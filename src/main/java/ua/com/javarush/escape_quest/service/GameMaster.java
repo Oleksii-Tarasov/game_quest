@@ -44,47 +44,44 @@ public class GameMaster {
 
 
     public void addItemsToCharacterInventory(String[] items) {
-        Arrays.stream(items).forEach(it -> {
-            Item item = gameItems.get(it);
-            character.getInventory().put(item.getTitle(), item);
-        });
+        Arrays.stream(items).forEach(itemId -> character.getInventory().add(itemId));
     }
 
-    public void removeItemsFromLocation(String locationTitle, String[] items) {
+    public void removeItemsFromLocation(String locationId, String[] items) {
         Arrays.stream(items).forEach(item -> {
-            Location location = gameLocations.get(locationTitle);
+            Location location = gameLocations.get(locationId);
             location.getItemsInLocation().remove(item);
         });
     }
 
-    public void rememberCurrentLocation(String locationTitle) {
-        character.setCurrentLocation(locationTitle);
+    public void rememberCurrentLocation(String locationId) {
+        character.setCurrentLocation(locationId);
     }
 
-    public Map<String, String> showItemsInLocation(String locationTitle) {
-        return gameLocations.get(locationTitle).getItemsInLocation().stream()
+    public Map<String, String> showItemsInLocation(String locationId) {
+        return gameLocations.get(locationId).getItemsInLocation().stream()
                 .collect(Collectors.toMap(
-                        item -> gameItems.get(item).getTitle(),
+                        item -> gameItems.get(item).getItemId(),
                         item -> gameItems.get(item).getDescription())
                 );
     }
 
     public Map<String, String> showCharacterInventory() {
-        return character.getInventory().entrySet().stream()
+        return character.getInventory().stream()
                 .collect(Collectors.toMap(
-                        item -> item.getValue().getTitle(),
-                        item -> item.getValue().getDescription())
-                );
+                        itemId -> gameItems.get(itemId).getItemId(),
+                        itemId -> gameItems.get(itemId).getDescription()
+                ));
     }
 
     public void dontShowCharacterInventory() {
         character.getInventory().clear();
     }
 
-    public String attackBossAndGetResult(String itemTitle) {
-        Item item = gameItems.get(itemTitle);
+    public String attackBossAndGetResult(String itemId) {
+        Item item = gameItems.get(itemId);
 
-        if ("waterBucket".equals(itemTitle)) {
+        if ("waterBucket".equals(itemId)) {
             character.setWinner(true);
             return item.getEffect();
         }
@@ -93,7 +90,7 @@ public class GameMaster {
         amountOfLives--;
         character.setAmountOfLives(amountOfLives);
 
-        character.getInventory().remove(itemTitle);
+        character.getInventory().remove(itemId);
 
         return item.getEffect();
     }
