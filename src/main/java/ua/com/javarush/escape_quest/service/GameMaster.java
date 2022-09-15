@@ -15,6 +15,8 @@ public class GameMaster {
     private static GameMaster gameMaster;
     private final GameConstructor gameConstructor = new GameConstructor(new ResourceLoader());
     private Map<Long, Character> gameCharacters = new HashMap<>();
+    private long characterId = 0;
+
     private Map<String, Location> gameLocations;
     private Map<String, Item> gameItems;
 
@@ -36,36 +38,36 @@ public class GameMaster {
         gameItems = gameConstructor.createItems();
     }
 
-    public void loadCharacter(long characterId, String nickname) {
-        gameCharacters.put(characterId, gameConstructor.createCharacter(characterId, nickname));
-    }
+    public Character createCharacter(String nickname) {
+        if (("<enter your name>").equals(nickname)) {
+            nickname = "Unknown Hero";
+        }
 
-    public void setLocationsForCurrentCharacter(long characterId) {
-        Character character = gameCharacters.get(characterId);
+        int amountOfLives = 3;
+        characterId++;
 
-        Map<String, Location> gameLocationsForCurrentCharacter = gameLocations.entrySet().stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        Character character = new Character(characterId, nickname, amountOfLives);
+        character.setGameLocations(gameLocations);
 
-        character.setGameLocations(gameLocationsForCurrentCharacter);
-    }
+        gameCharacters.put(character.getId(), character);
 
-    public Location getLocationForCurrentCharacter(Character character, String locationId) {
-        return character.getGameLocations().get(locationId);
+        return character;
     }
 
     public void resetCharacterStats(Character character) {
         character.setAmountOfLives(3);
         character.getInventory().clear();
         character.setWinner(false);
-//        loadGameLocations();
-        setLocationsForCurrentCharacter(character.getId());
+        loadGameLocations();
+        character.setGameLocations(gameLocations);
     }
 
     public void addItemsToCharacterInventory(Character character, String[] items) {
         Arrays.stream(items).forEach(itemId -> character.getInventory().add(itemId));
     }
 
-    public void removeItemsFromCharacterLocation(Character character, String locationId, String[] items) {
+    public void removeItemsFromLocation(Character character, String[] items) {
+        String locationId = character.getCurrentLocationId();
         Arrays.stream(items).forEach(item -> {
             Location location = character.getGameLocations().get(locationId);
             location.getItemsInLocation().remove(item);

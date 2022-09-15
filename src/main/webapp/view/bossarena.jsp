@@ -15,11 +15,12 @@
     </p>
 
 <c:if test="${inventory.size()==0}">
-    but you come empty-handed and your fate is sealed...await
+    but you come empty-handed and your fate is sealed... <br>
+    ...await...
     <script>
         setTimeout(function(){
             window.location.href = '${pageContext.request.contextPath}/location/?id=hellend';
-        }, 15000);
+        }, 10000);
     </script>
 </c:if>
 </div>

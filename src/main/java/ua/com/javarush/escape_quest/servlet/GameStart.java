@@ -1,5 +1,6 @@
 package ua.com.javarush.escape_quest.servlet;
 
+import ua.com.javarush.escape_quest.model.Character;
 import ua.com.javarush.escape_quest.service.GameMaster;
 
 import javax.servlet.ServletConfig;
@@ -14,7 +15,6 @@ import java.io.IOException;
 @WebServlet(value = "")
 public class GameStart extends HttpServlet {
     private GameMaster gameMaster;
-    private long characterId;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -26,7 +26,6 @@ public class GameStart extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("image", "/img/introduce.jpg");
         req.setAttribute("storyBlock", "/view/introduce.jsp");
-        characterId = 0;
 
         getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
     }
@@ -34,16 +33,13 @@ public class GameStart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String nickname = req.getParameter("nickname");
-        characterId++;
 
-//        gameMaster.loadGameLocations();
-//        gameMaster.loadGameItems();
-        gameMaster.loadCharacter(characterId, nickname);
-
-        gameMaster.setLocationsForCurrentCharacter(characterId);
+        gameMaster.loadGameLocations();
+        gameMaster.loadGameItems();
+        Character character = gameMaster.createCharacter(nickname);
 
         HttpSession session = req.getSession();
-        session.setAttribute("character", gameMaster.getGameCharacters().get(characterId));
+        session.setAttribute("character", character);
 
         resp.sendRedirect(req.getContextPath()  + "/location/?id=prison");
     }

@@ -27,12 +27,12 @@ public class LocationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String locationId = req.getParameter("id");
         Character character = (Character) req.getSession().getAttribute("character");
-
-        Location currentLocation = gameMaster.getLocationForCurrentCharacter(character, locationId);
-
+        String locationId = req.getParameter("id");
         character.setCurrentLocationId(locationId);
+
+        Location currentLocation = character.getGameLocations().get(locationId);
+
         displayEndGameStatusIfItsOver(req, character, locationId);
 
         req.setAttribute("image", currentLocation.getImage());

@@ -11,8 +11,8 @@ import java.util.Map;
 public class Character {
     private long id;
     private String nickname;
-    private List<String> inventory = new ArrayList<>();
     private String currentLocationId;
+    private List<String> inventory = new ArrayList<>();
     private Map<String, Location> gameLocations = new HashMap<>();
     private int amountOfLives;
     private boolean isWinner;

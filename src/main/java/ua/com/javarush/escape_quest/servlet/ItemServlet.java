@@ -26,23 +26,15 @@ public class ItemServlet extends HttpServlet {
 
         Character character = (Character) req.getSession().getAttribute("character");
 
-        String locationId = character.getCurrentLocationId();
-
-        if (items == null) {
-            resp.sendRedirect(req.getContextPath() + "/location/?id=" + locationId);
-            return;
-        }
-
         gameMaster.addItemsToCharacterInventory(character, items);
-        gameMaster.removeItemsFromCharacterLocation(character, locationId, items);
+        gameMaster.removeItemsFromLocation(character, items);
 
-        resp.sendRedirect(req.getContextPath() + "/location/?id=" + locationId);
+        resp.sendRedirect(req.getContextPath() + "/location/?id=" + character.getCurrentLocationId());
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Character character = (Character) req.getSession().getAttribute("character");
-
         String locationId = character.getCurrentLocationId();
 
         if ("bossarena".equals(locationId)) {
