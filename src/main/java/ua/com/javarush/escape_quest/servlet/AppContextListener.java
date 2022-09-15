@@ -12,7 +12,11 @@ public class AppContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext servletContext = sce.getServletContext();
+
         GameMaster gameMaster = GameMaster.getGameMaster();
+        gameMaster.loadGameLocations();
+        gameMaster.loadGameItems();
+
         servletContext.setAttribute("gameMaster", gameMaster);
     }
 }

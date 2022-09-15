@@ -47,7 +47,7 @@
         <td>
             <c:if test="${inventory!=null && inventory.size()!=0}">
                 <div class="menu">
-                    <button class="inventory">Inventory↓</button>
+                    <button class="inventory">Inventory</button>
                     <div class="dropdown-child">
                         <form action="${pageContext.request.contextPath}/grabitem" method="get">
                             <c:forEach var="entry" items="${inventory}">

@@ -1,5 +1,6 @@
 package ua.com.javarush.escape_quest.servlet;
 
+import ua.com.javarush.escape_quest.model.Character;
 import ua.com.javarush.escape_quest.model.Location;
 import ua.com.javarush.escape_quest.service.GameMaster;
 
@@ -27,33 +28,31 @@ public class LocationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String locationId = req.getParameter("id");
+        Character character = (Character) req.getSession().getAttribute("character");
 
-        Location currentLocation = gameMaster.getGameLocations().get(locationId);
+        Location currentLocation = gameMaster.getLocationForCurrentCharacter(character, locationId);
 
-        displayEndGameStatusIfItsOver(req, locationId);
-
-        String testName = gameMaster.getCharacter().getNickname();
+        character.setCurrentLocationId(locationId);
+        displayEndGameStatusIfItsOver(req, character, locationId);
 
         req.setAttribute("image", currentLocation.getImage());
         req.setAttribute("sound", currentLocation.getSound());
         req.setAttribute("storyBlock", currentLocation.getStoryBlock());
-        req.setAttribute("nickname", gameMaster.getCharacter().getNickname());
-        req.setAttribute("inventory", gameMaster.showCharacterInventory());
-        req.setAttribute("itemsInLocation", gameMaster.showItemsInLocation(locationId));
-        req.getSession().setAttribute("tries", gameMaster.countTries());
-
-        gameMaster.rememberCurrentLocation(locationId);
+        req.setAttribute("nickname", character.getNickname());
+        req.setAttribute("inventory", gameMaster.showCharacterInventory(character));
+        req.setAttribute("itemsInLocation", gameMaster.showItemsInLocation(currentLocation));
+        req.getSession().setAttribute("tries", gameMaster.countTries(character));
 
         getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 
-    private void displayEndGameStatusIfItsOver(HttpServletRequest request, String locationId) {
+    private void displayEndGameStatusIfItsOver(HttpServletRequest request, Character character, String locationId) {
         if (BAD_ENDS.contains(locationId)) {
             request.setAttribute("isGameOver", true);
-            gameMaster.dontShowCharacterInventory();
+            gameMaster.dontShowCharacterInventory(character);
         } else if (GOOD_ENDS.contains(locationId)) {
             request.setAttribute("isWinner", true);
-            gameMaster.dontShowCharacterInventory();
+            gameMaster.dontShowCharacterInventory(character);
         }
     }
 }

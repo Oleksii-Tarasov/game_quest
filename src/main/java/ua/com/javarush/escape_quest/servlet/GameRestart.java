@@ -22,11 +22,10 @@ public class GameRestart extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        gameMaster.createGameWorld();
-        Character character = gameMaster.getCharacter();
-        character.setAmountOfLives(3);
-        character.getInventory().clear();
-        character.setWinner(false);
+        Character character = (Character) req.getSession().getAttribute("character");
+
+        gameMaster.resetCharacterStats(character);
+
         req.getSession().setAttribute("effect", "");
 
         resp.sendRedirect(req.getContextPath() + "/location/?id=prison");

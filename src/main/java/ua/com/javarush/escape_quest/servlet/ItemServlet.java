@@ -1,5 +1,6 @@
 package ua.com.javarush.escape_quest.servlet;
 
+import ua.com.javarush.escape_quest.model.Character;
 import ua.com.javarush.escape_quest.service.GameMaster;
 
 import javax.servlet.ServletConfig;
@@ -13,7 +14,6 @@ import java.io.IOException;
 @WebServlet(value = "/grabitem")
 public class ItemServlet extends HttpServlet {
     private GameMaster gameMaster;
-
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -24,23 +24,26 @@ public class ItemServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String[] items = req.getParameterValues("item");
 
-        String locationId = gameMaster.getCharacter().getCurrentLocation();
+        Character character = (Character) req.getSession().getAttribute("character");
+
+        String locationId = character.getCurrentLocationId();
 
         if (items == null) {
             resp.sendRedirect(req.getContextPath() + "/location/?id=" + locationId);
             return;
         }
 
-        gameMaster.addItemsToCharacterInventory(items);
-        gameMaster.removeItemsFromLocation(locationId, items);
+        gameMaster.addItemsToCharacterInventory(character, items);
+        gameMaster.removeItemsFromCharacterLocation(character, locationId, items);
 
         resp.sendRedirect(req.getContextPath() + "/location/?id=" + locationId);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        Character character = (Character) req.getSession().getAttribute("character");
 
-        String locationId = gameMaster.getCharacter().getCurrentLocation();
+        String locationId = character.getCurrentLocationId();
 
         if ("bossarena".equals(locationId)) {
             String item = req.getParameter("item");
