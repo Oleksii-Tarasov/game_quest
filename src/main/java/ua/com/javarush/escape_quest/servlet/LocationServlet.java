@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 import static ua.com.javarush.escape_quest.constant.GoodBadEnds.BAD_ENDS;
 import static ua.com.javarush.escape_quest.constant.GoodBadEnds.GOOD_ENDS;
@@ -33,26 +34,40 @@ public class LocationServlet extends HttpServlet {
 
         Location currentLocation = character.getGameLocations().get(locationId);
 
-        displayEndGameStatusIfItsOver(req, character, locationId);
-
         req.setAttribute("image", currentLocation.getImage());
         req.setAttribute("sound", currentLocation.getSound());
         req.setAttribute("storyBlock", currentLocation.getStoryBlock());
-        req.setAttribute("nickname", character.getNickname());
-        req.setAttribute("inventory", gameMaster.showCharacterInventory(character));
-        req.setAttribute("itemsInLocation", gameMaster.showItemsInLocation(currentLocation));
+
+
+        List<String> characterInventory = character.getInventory();
+        if (characterInventory!=null && !characterInventory.isEmpty()) {
+            req.setAttribute("inventory", gameMaster.showItemsInInventory(characterInventory));
+            req.setAttribute("showInventory", true);
+        }
+
+        List<String> itemsInLocation = currentLocation.getItemsInLocation();
+        if (!itemsInLocation.isEmpty()) {
+            req.setAttribute("itemsInLocation", gameMaster.showItemsInLocation(itemsInLocation));
+        }
+
+        displayEndGameStatusIfItsOver(req, locationId);
+
         req.getSession().setAttribute("tries", gameMaster.countTries(character));
 
         getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 
-    private void displayEndGameStatusIfItsOver(HttpServletRequest request, Character character, String locationId) {
+    private void displayEndGameStatusIfItsOver(HttpServletRequest request, String locationId) {
         if (BAD_ENDS.contains(locationId)) {
             request.setAttribute("isGameOver", true);
-            gameMaster.dontShowCharacterInventory(character);
+            request.setAttribute("showInventory" , false);
         } else if (GOOD_ENDS.contains(locationId)) {
             request.setAttribute("isWinner", true);
-            gameMaster.dontShowCharacterInventory(character);
+            request.setAttribute("showInventory" , false);
+        }
+
+        if ("firebridge".equals(locationId)) {
+            request.setAttribute("showInventory", false);
         }
     }
 }

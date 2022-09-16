@@ -45,7 +45,7 @@
     </tr>
     <tr>
         <td>
-            <c:if test="${inventory!=null && inventory.size()!=0}">
+            <c:if test="${showInventory==true}">
                 <div class="menu">
                     <button class="inventory">Inventory</button>
                     <div class="dropdown-child">

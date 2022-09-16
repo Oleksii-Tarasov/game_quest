@@ -7,6 +7,7 @@ import ua.com.javarush.escape_quest.model.Location;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -74,24 +75,20 @@ public class GameMaster {
         });
     }
 
-    public Map<String, String> showItemsInLocation(Location location) {
-        return location.getItemsInLocation().stream()
+    public Map<String, String> showItemsInLocation(List<String> itemsInLocation) {
+        return itemsInLocation.stream()
                 .collect(Collectors.toMap(
                         item -> gameItems.get(item).getItemId(),
                         item -> gameItems.get(item).getDescription())
                 );
     }
 
-    public Map<String, String> showCharacterInventory(Character character) {
-        return character.getInventory().stream()
+    public Map<String, String> showItemsInInventory(List<String> inventory) {
+        return inventory.stream()
                 .collect(Collectors.toMap(
                         itemId -> gameItems.get(itemId).getItemId(),
                         itemId -> gameItems.get(itemId).getDescription()
                 ));
-    }
-
-    public void dontShowCharacterInventory(Character character) {
-        character.getInventory().clear();
     }
 
     public String attackBossAndGetResult(Character character, String itemId) {

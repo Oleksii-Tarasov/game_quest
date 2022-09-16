@@ -18,11 +18,13 @@ public class ItemFilter implements Filter {
         Character character = (Character) request.getSession().getAttribute("character");
         String locationId = character.getCurrentLocationId();
 
-        if (servletRequest.getParameterValues("item") == null) {
-            response.sendRedirect(request.getContextPath() + "/location/?id=" + locationId);
-        }
-        else {
+        if (servletRequest.getParameterValues("item") != null) {
+//            response.sendRedirect(request.getContextPath() + "/location/?id=" + locationId);
             filterChain.doFilter(request, response);
+
         }
+//        else {
+//            filterChain.doFilter(request, response);
+//        }
     }
 }

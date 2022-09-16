@@ -1,6 +1,7 @@
 package ua.com.javarush.escape_quest.servlet;
 
 import ua.com.javarush.escape_quest.model.Character;
+import ua.com.javarush.escape_quest.model.Location;
 import ua.com.javarush.escape_quest.service.GameMaster;
 
 import javax.servlet.ServletConfig;
@@ -40,6 +41,7 @@ public class GameStart extends HttpServlet {
 
         HttpSession session = req.getSession();
         session.setAttribute("character", character);
+        session.setAttribute("nickname", character.getNickname());
 
         resp.sendRedirect(req.getContextPath()  + "/location/?id=prison");
     }
