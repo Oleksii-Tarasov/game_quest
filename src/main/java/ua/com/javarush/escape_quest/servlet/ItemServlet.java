@@ -14,6 +14,7 @@ import java.io.IOException;
 @WebServlet(value = "/grabitem")
 public class ItemServlet extends HttpServlet {
     private GameMaster gameMaster;
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -22,24 +23,22 @@ public class ItemServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String[] items = req.getParameterValues("item");
-
+        String itemId = req.getParameter("item");
+        String locationId = (String) req.getSession().getAttribute("currentLocation");
         Character character = (Character) req.getSession().getAttribute("character");
 
-        gameMaster.addItemsToCharacterInventory(character, items);
-        gameMaster.removeItemsFromLocation(character, items);
+        gameMaster.moveItemFromLocationToCharacterInventory(character, locationId, itemId);
 
-        resp.sendRedirect(req.getContextPath() + "/location/?id=" + character.getCurrentLocationId());
+        resp.sendRedirect(req.getContextPath() + "/location/?id=" + locationId);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Character character = (Character) req.getSession().getAttribute("character");
-        String locationId = character.getCurrentLocationId();
+        String locationId = (String) req.getSession().getAttribute("currentLocation");
 
         if ("bossarena".equals(locationId)) {
-            String item = req.getParameter("item");
-            resp.sendRedirect(req.getContextPath() + "/bossfight/use?item=" + item);
+            String itemId = req.getParameter("item");
+            resp.sendRedirect(req.getContextPath() + "/bossfight/use?item=" + itemId);
             return;
         }
 

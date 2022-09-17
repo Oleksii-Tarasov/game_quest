@@ -14,6 +14,7 @@ import java.io.IOException;
 @WebServlet("/restart")
 public class GameRestart extends HttpServlet {
     private GameMaster gameMaster;
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);

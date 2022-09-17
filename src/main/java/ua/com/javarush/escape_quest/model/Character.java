@@ -9,16 +9,15 @@ import java.util.Map;
 
 @Data
 public class Character {
-    private long id;
+    private long characterId;
     private String nickname;
-    private String currentLocationId;
     private List<String> inventory = new ArrayList<>();
     private Map<String, Location> gameLocations = new HashMap<>();
     private int amountOfLives;
     private boolean isWinner;
 
-    public Character(long id, String nickname, int amountOfLives) {
-        this.id = id;
+    public Character(long characterId, String nickname, int amountOfLives) {
+        this.characterId = characterId;
         this.nickname = nickname;
         this.amountOfLives = amountOfLives;
     }

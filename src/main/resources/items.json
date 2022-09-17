@@ -6,11 +6,6 @@
       "effect" : "You put out the hellfire with water from the bucket <br> and the Lord of the Underworld turns into steam."
     },
     {
-      "itemId": "threads",
-      "description" : "Bunch of threads",
-      "effect" : "You chose thread to attack? You really need to rethink your plan"
-    },
-    {
       "itemId": "book",
       "description" : "Poetry book",
       "effect" : "You recite a verse from a book, but the Lord of the Underworld does not get kinder"

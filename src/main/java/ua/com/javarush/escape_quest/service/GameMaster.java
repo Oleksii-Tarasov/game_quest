@@ -5,7 +5,6 @@ import ua.com.javarush.escape_quest.model.Character;
 import ua.com.javarush.escape_quest.model.Item;
 import ua.com.javarush.escape_quest.model.Location;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,8 +15,6 @@ public class GameMaster {
     private static GameMaster gameMaster;
     private final GameConstructor gameConstructor = new GameConstructor(new ResourceLoader());
     private Map<Long, Character> gameCharacters = new HashMap<>();
-    private long characterId = 0;
-
     private Map<String, Location> gameLocations;
     private Map<String, Item> gameItems;
 
@@ -39,18 +36,11 @@ public class GameMaster {
         gameItems = gameConstructor.createItems();
     }
 
-    public Character createCharacter(String nickname) {
-        if (("<enter your name>").equals(nickname)) {
-            nickname = "Unknown Hero";
-        }
-
-        int amountOfLives = 3;
-        characterId++;
-
-        Character character = new Character(characterId, nickname, amountOfLives);
+    public Character loadGameCharacter(String nickname) {
+        Character character = gameConstructor.createCharacter(nickname);
         character.setGameLocations(gameLocations);
 
-        gameCharacters.put(character.getId(), character);
+        gameCharacters.put(character.getCharacterId(), character);
 
         return character;
     }
@@ -63,16 +53,10 @@ public class GameMaster {
         character.setGameLocations(gameLocations);
     }
 
-    public void addItemsToCharacterInventory(Character character, String[] items) {
-        Arrays.stream(items).forEach(itemId -> character.getInventory().add(itemId));
-    }
-
-    public void removeItemsFromLocation(Character character, String[] items) {
-        String locationId = character.getCurrentLocationId();
-        Arrays.stream(items).forEach(item -> {
-            Location location = character.getGameLocations().get(locationId);
-            location.getItemsInLocation().remove(item);
-        });
+    public void moveItemFromLocationToCharacterInventory(Character character, String locationId, String itemId) {
+        Location location = character.getGameLocations().get(locationId);
+        character.getInventory().add(itemId);
+        location.getItemsInLocation().remove(itemId);
     }
 
     public Map<String, String> showItemsInLocation(List<String> itemsInLocation) {

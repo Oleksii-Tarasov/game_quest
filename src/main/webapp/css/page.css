@@ -3,9 +3,9 @@
 body {
     background-color: #333131;
     -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none;   /* Chrome/Safari/Opera */
-    -moz-user-select: none;      /* Firefox */
-    -ms-user-select: none;       /* Internet Explorer/Edge */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
 header {
@@ -69,7 +69,7 @@ img {
     color: grey;
 }
 
-#clockdiv{
+#clockdiv {
     font-family: Constantia, serif;
     color: red;
     display: inline-block;
@@ -118,16 +118,6 @@ input[type=submit] {
 
 /*menu block*/
 
-.checkBox {
-    display: inline;
-    background: #333131;
-    color: #489cbb;
-    border: none;
-    font-family: Constantia, serif;
-    font-size: large;
-    text-align: justify;
-}
-
 .inventory {
     font-size: xx-large;
     font-family: Constantia, serif;
@@ -168,6 +158,10 @@ input[type=submit] {
     color: darkgray;
     padding: 10px;
     display: block;
+}
+
+.dropdown-child button:hover {
+    background-color: #333131;
     cursor: grab;
 }
 
@@ -181,6 +175,20 @@ button {
     border: 2px solid #a4711b;
     border-radius: 8px;
     cursor: pointer;
+}
+
+.itemButton button {
+    display: inline-block;
+    font-size: medium;
+    background-color: #333131;
+    color: #489cbb;
+    border: 2px solid #a4711b;
+    border-radius: 8px;
+}
+
+.itemButton button:hover {
+    background-color: #231f1f;
+    cursor: grab;
 }
 
 .startButton {

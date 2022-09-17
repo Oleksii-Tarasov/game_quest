@@ -14,7 +14,7 @@
         ${effect}
     </p>
 
-<c:if test="${inventory.size()==0}">
+<c:if test="${tries==0}">
     but you come empty-handed and your fate is sealed... <br>
     ...await...
     <script>

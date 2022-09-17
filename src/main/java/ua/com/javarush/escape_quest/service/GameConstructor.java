@@ -4,17 +4,20 @@ import lombok.Data;
 import ua.com.javarush.escape_quest.configuration.ItemProperties;
 import ua.com.javarush.escape_quest.configuration.LocationProperties;
 import ua.com.javarush.escape_quest.configuration.ModelConfig;
+import ua.com.javarush.escape_quest.model.Character;
 import ua.com.javarush.escape_quest.model.Item;
 import ua.com.javarush.escape_quest.model.Location;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static ua.com.javarush.escape_quest.constant.ResourceFilesPath.ITEMS_FILE_PATH;
+import static ua.com.javarush.escape_quest.constant.ResourceFilesPath.LOCATIONS_FILE_PATH;
+
 @Data
 public class GameConstructor {
     private ResourceLoader resourceLoader;
-    public static final String LOCATIONS_FILE_PATH = "/locations.json";
-    public static final String ITEMS_FILE_PATH = "/items.json";
+    private long characterId = 0;
 
     public GameConstructor(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
@@ -42,5 +45,16 @@ public class GameConstructor {
         }
 
         return gameItems;
+    }
+
+    public Character createCharacter(String nickname) {
+        if (("<enter your name>").equals(nickname)) {
+            nickname = "Unknown Hero";
+        }
+
+        int amountOfLives = 3;
+        characterId++;
+
+        return new Character(characterId, nickname, amountOfLives);
     }
 }

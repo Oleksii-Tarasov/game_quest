@@ -31,14 +31,13 @@
     <tr>
         <td>
             <form action="${pageContext.request.contextPath}/grabitem" method="post">
-                <c:if test="${itemsInLocation!=null && itemsInLocation.size()!=0}">
+                <c:if test="${showItems==true}">
                     <p>Various objects are scattered around you. You can take something:</p>
                     <c:forEach var="entry" items="${itemsInLocation}">
-                        <div class="checkBox">
-                            <input type="checkbox" name="item" value="${entry.key}"> ${entry.value}
+                        <div class="itemButton">
+                            <button type="submit" name="item" value="${entry.key}"> ${entry.value}
                         </div>
                     </c:forEach>
-                    <input type="submit" value="Take Selected">
                 </c:if>
             </form>
         </td>
