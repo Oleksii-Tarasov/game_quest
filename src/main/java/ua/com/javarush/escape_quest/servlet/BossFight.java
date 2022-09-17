@@ -30,7 +30,7 @@ public class BossFight extends HttpServlet {
         String effect = gameMaster.attackBossAndGetResult(character, item);
         req.getSession().setAttribute("effect", effect);
 
-        if (character.isWinner()) {
+        if (character.isWinnerInBattle()) {
             resp.sendRedirect(req.getContextPath() + "/location/?id=thronehall");
             return;
         }

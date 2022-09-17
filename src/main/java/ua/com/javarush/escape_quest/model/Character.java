@@ -14,7 +14,10 @@ public class Character {
     private List<String> inventory = new ArrayList<>();
     private Map<String, Location> gameLocations = new HashMap<>();
     private int amountOfLives;
-    private boolean isWinner;
+    private int gameAttempt = 0;
+    private int goodEndsNumber = 0;
+    private int badEndsNumber = 0;
+    private boolean isWinnerInBattle;
 
     public Character(long characterId, String nickname, int amountOfLives) {
         this.characterId = characterId;

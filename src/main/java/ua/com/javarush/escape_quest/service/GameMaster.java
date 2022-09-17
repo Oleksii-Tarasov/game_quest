@@ -48,7 +48,7 @@ public class GameMaster {
     public void resetCharacterStats(Character character) {
         character.setAmountOfLives(3);
         character.getInventory().clear();
-        character.setWinner(false);
+        character.setWinnerInBattle(false);
         loadGameLocations();
         character.setGameLocations(gameLocations);
     }
@@ -79,7 +79,7 @@ public class GameMaster {
         Item item = gameItems.get(itemId);
 
         if ("waterBucket".equals(itemId)) {
-            character.setWinner(true);
+            character.setWinnerInBattle(true);
             return item.getEffect();
         }
 
@@ -105,5 +105,24 @@ public class GameMaster {
         }
 
         return amountOfLives;
+    }
+
+    public void calculateStatistics(Character character, String gameEnding) {
+        switch (gameEnding) {
+            case "badEnd" -> {
+                int countBadEnd = character.getBadEndsNumber();
+                countBadEnd++;
+                character.setBadEndsNumber(countBadEnd);
+            }
+            case "goodEnd" -> {
+                int countGoodEnd = character.getGoodEndsNumber();
+                countGoodEnd++;
+                character.setGoodEndsNumber(countGoodEnd);
+            }
+        }
+
+        int countGameAttempt = character.getGameAttempt();
+        countGameAttempt++;
+        character.setGameAttempt(countGameAttempt);
     }
 }
