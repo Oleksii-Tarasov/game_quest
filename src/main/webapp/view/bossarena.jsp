@@ -1,7 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<audio autoplay>
-    <source src="${pageContext.request.contextPath}/sound/laugh.mp3">
-</audio>
 <p>
     You stand before the Lord of the Underworld. <br>
     He looks at you with contempt, but does not take any action.

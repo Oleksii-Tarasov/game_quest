@@ -188,14 +188,16 @@ button:hover {
 .itemButton button {
     display: inline-block;
     font-size: medium;
-    background-color: #333131;
+    background-color: #302d33;
     color: #489cbb;
-    border: 2px solid #a4711b;
+
+    border: 2px solid gray;
     border-radius: 8px;
 }
 
 .itemButton button:hover {
     background-color: #231f1f;
+    border: 2px solid #a4711b;
     cursor: grab;
 }
 
