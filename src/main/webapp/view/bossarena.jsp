@@ -14,7 +14,7 @@
         ${effect}
     </p>
 
-<c:if test="${tries==0}">
+<c:if test="${battleTries==0}">
     but you come empty-handed and your fate is sealed... <br>
     ...await...
     <script>
@@ -25,5 +25,5 @@
 </c:if>
 </div>
 <p>
-    You have ${tries} tries
+    You have ${battleTries} tries
 </p>

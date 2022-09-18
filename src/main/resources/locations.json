@@ -11,7 +11,7 @@
       "locationId": "mainhall",
       "storyBlock" : "/view/mainhall.jsp",
       "image" : "/img/mainhall.jpg",
-      "sound" : "/sound/mainhall.mp3",
+      "sound" : "",
       "itemsInLocation" : [
         "sword"
       ]
@@ -34,7 +34,7 @@
       "locationId": "dungeon",
       "storyBlock" : "/view/dungeon.jsp",
       "image" : "/img/dungeon.jpg",
-      "sound" : "/sound/dungeon.mp3",
+      "sound" : "",
       "itemsInLocation" : [
         "waterBucket",
         "book"
@@ -58,7 +58,7 @@
       "locationId": "firehall",
       "storyBlock": "/view/firehall.jsp",
       "image": "/img/firehall.jpg",
-      "sound": "/sound/firehall.mp3",
+      "sound": "",
       "itemsInLocation" : [
         "pizza",
         "textbook"
@@ -89,7 +89,7 @@
       "locationId": "bossarena",
       "storyBlock": "/view/bossarena.jsp",
       "image": "/img/bossarena.jpg",
-      "sound": "/sound/bossarena.mp3",
+      "sound": "/sound/laugh.mp3",
       "itemsInLocation" : []
     }
   ]

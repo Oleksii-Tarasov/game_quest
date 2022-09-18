@@ -11,17 +11,22 @@ import java.util.Map;
 public class Character {
     private long characterId;
     private String nickname;
-    private List<String> inventory = new ArrayList<>();
-    private Map<String, Location> gameLocations = new HashMap<>();
+    private List<String> inventory;
+    private Map<String, Location> gameLocations;
     private int amountOfLives;
-    private int gameAttempt = 0;
-    private int goodEndsNumber = 0;
-    private int badEndsNumber = 0;
-    private boolean isWinnerInBattle;
+    private int gameAttempt;
+    private int goodEndsNumber;
+    private int badEndsNumber;
+    private boolean isWinner;
 
     public Character(long characterId, String nickname, int amountOfLives) {
         this.characterId = characterId;
         this.nickname = nickname;
         this.amountOfLives = amountOfLives;
+        this.gameAttempt = 0;
+        this.goodEndsNumber = 0;
+        this.badEndsNumber = 0;
+        this.inventory = new ArrayList<>();
+        this.gameLocations = new HashMap<>();
     }
 }

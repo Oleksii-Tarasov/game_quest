@@ -13,12 +13,14 @@ import java.util.stream.Collectors;
 @Data
 public class GameMaster {
     private static GameMaster gameMaster;
-    private final GameConstructor gameConstructor = new GameConstructor(new ResourceLoader());
-    private Map<Long, Character> gameCharacters = new HashMap<>();
+    private final GameConstructor gameConstructor;
+    private Map<Long, Character> gameCharacters;
     private Map<String, Location> gameLocations;
     private Map<String, Item> gameItems;
 
     private GameMaster() {
+        this.gameConstructor = new GameConstructor(new ResourceLoader());
+        this.gameCharacters = new HashMap<>();
     }
 
     public static GameMaster getGameMaster() {
@@ -48,7 +50,7 @@ public class GameMaster {
     public void resetCharacterStats(Character character) {
         character.setAmountOfLives(3);
         character.getInventory().clear();
-        character.setWinnerInBattle(false);
+        character.setWinner(false);
         loadGameLocations();
         character.setGameLocations(gameLocations);
     }
@@ -79,7 +81,7 @@ public class GameMaster {
         Item item = gameItems.get(itemId);
 
         if ("waterBucket".equals(itemId)) {
-            character.setWinnerInBattle(true);
+            character.setWinner(true);
             return item.getEffect();
         }
 
@@ -97,28 +99,25 @@ public class GameMaster {
     }
 
     public int countTries(Character character) {
-        int tries = character.getInventory().size();
+        int battleTries = character.getInventory().size();
         int amountOfLives = character.getAmountOfLives();
 
-        if (tries < amountOfLives) {
-            amountOfLives = tries;
+        if (battleTries < amountOfLives) {
+            amountOfLives = battleTries;
         }
 
         return amountOfLives;
     }
 
-    public void calculateStatistics(Character character, String gameEnding) {
-        switch (gameEnding) {
-            case "badEnd" -> {
-                int countBadEnd = character.getBadEndsNumber();
-                countBadEnd++;
-                character.setBadEndsNumber(countBadEnd);
-            }
-            case "goodEnd" -> {
-                int countGoodEnd = character.getGoodEndsNumber();
-                countGoodEnd++;
-                character.setGoodEndsNumber(countGoodEnd);
-            }
+    public void calculateStatistics(Character character) {
+        if (character.isWinner()) {
+            int countGoodEnd = character.getGoodEndsNumber();
+            countGoodEnd++;
+            character.setGoodEndsNumber(countGoodEnd);
+        } else {
+            int countBadEnd = character.getBadEndsNumber();
+            countBadEnd++;
+            character.setBadEndsNumber(countBadEnd);
         }
 
         int countGameAttempt = character.getGameAttempt();

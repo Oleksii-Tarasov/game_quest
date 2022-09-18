@@ -1,22 +1,16 @@
 package ua.com.javarush.escape_quest.model;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.List;
 
-@Data
+@Getter
+@AllArgsConstructor
 public class Location {
     private String locationId;
     private String storyBlock;
     private String image;
     private String sound;
     private List<String> itemsInLocation;
-
-    public Location(String locationId, String storyBlock, String image, String sound, List<String> itemsInLocation) {
-        this.locationId = locationId;
-        this.storyBlock = storyBlock;
-        this.image = image;
-        this.sound = sound;
-        this.itemsInLocation = itemsInLocation;
-    }
 }

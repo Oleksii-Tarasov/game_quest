@@ -11,45 +11,49 @@ import java.io.IOException;
 
 import static ua.com.javarush.escape_quest.constant.LocationRules.*;
 
-
 @WebFilter("/location/")
 public class LocationFilter implements Filter {
     private GameMaster gameMaster;
 
     @Override
-    public void init(FilterConfig filterConfig) {
+    public void init(FilterConfig filterConfig) throws ServletException {
+        Filter.super.init(filterConfig);
         gameMaster = (GameMaster) filterConfig.getServletContext().getAttribute("gameMaster");
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        String locationId = servletRequest.getParameter("id");
+        HttpServletRequest req = (HttpServletRequest) servletRequest;
 
-        if (DONT_SHOW_INVENTORY_IN_LOCATIONS.contains(locationId)) {
-            servletRequest.setAttribute("showInventory", false);
+        String locationId = req.getParameter("id");
+
+        if (DONT_DISPLAY_INVENTORY_IN_LOCATIONS.contains(locationId)) {
+            req.setAttribute("showInventory", false);
         } else {
-            servletRequest.setAttribute("showInventory", true);
+            req.setAttribute("showInventory", true);
         }
 
-        HttpServletRequest request = (HttpServletRequest) servletRequest;
-        HttpSession session = request.getSession();
+        HttpSession session = req.getSession();
         Character character = (Character) session.getAttribute("character");
 
         if (BAD_ENDS.contains(locationId)) {
-            servletRequest.setAttribute("isGameOver", true);
-            servletRequest.setAttribute("showInventory", false);
+            character.setWinner(false);
+            gameMaster.calculateStatistics(character);
 
-            gameMaster.calculateStatistics(character, "badEnd");
+            req.setAttribute("isGameOver", true);
+            req.setAttribute("showInventory", false);
+            session.setAttribute("badTries", character.getBadEndsNumber());
         } else if (GOOD_ENDS.contains(locationId)) {
-            servletRequest.setAttribute("isWinner", true);
-            servletRequest.setAttribute("showInventory", false);
+            character.setWinner(true);
+            gameMaster.calculateStatistics(character);
 
-            gameMaster.calculateStatistics(character, "goodEnd");
+            req.setAttribute("isWinner", true);
+            req.setAttribute("showInventory", false);
+            session.setAttribute("goodTries", character.getGoodEndsNumber());
         }
 
-        session.setAttribute("badTries", character.getBadEndsNumber());
-        session.setAttribute("goodTries", character.getGoodEndsNumber());
-        session.setAttribute("gameTries", character.getGameAttempt());
+        req.setAttribute("gameTries", character.getGameAttempt());
+        session.setAttribute("battleTries", gameMaster.countTries(character));
 
         filterChain.doFilter(servletRequest, servletResponse);
     }

@@ -23,14 +23,14 @@ public class BossFight extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String item = req.getParameter("item");
-
         Character character = (Character) req.getSession().getAttribute("character");
 
+        String item = req.getParameter("item");
         String effect = gameMaster.attackBossAndGetResult(character, item);
+
         req.getSession().setAttribute("effect", effect);
 
-        if (character.isWinnerInBattle()) {
+        if (character.isWinner()) {
             resp.sendRedirect(req.getContextPath() + "/location/?id=thronehall");
             return;
         }

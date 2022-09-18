@@ -17,10 +17,11 @@ import static ua.com.javarush.escape_quest.constant.ResourceFilesPath.LOCATIONS_
 @Data
 public class GameConstructor {
     private ResourceLoader resourceLoader;
-    private long characterId = 0;
+    private long characterId;
 
     public GameConstructor(ResourceLoader resourceLoader) {
         this.resourceLoader = resourceLoader;
+        this.characterId = 0;
     }
 
     public Map<String, Location> createLocations() {

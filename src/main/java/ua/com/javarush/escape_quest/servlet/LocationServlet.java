@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -25,29 +26,34 @@ public class LocationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String locationId = req.getParameter("id");
-        req.getSession().setAttribute("currentLocation", locationId);
+        HttpSession session = req.getSession();
 
-        Character character = (Character) req.getSession().getAttribute("character");
+        String locationId = req.getParameter("id");
+        session.setAttribute("currentLocation", locationId);
+
+        Character character = (Character) session.getAttribute("character");
         Location currentLocation = character.getGameLocations().get(locationId);
 
         req.setAttribute("image", currentLocation.getImage());
         req.setAttribute("sound", currentLocation.getSound());
         req.setAttribute("storyBlock", currentLocation.getStoryBlock());
 
-        List<String> characterInventory = character.getInventory();
+        displayItemsInLocation(currentLocation.getItemsInLocation(), req);
+        displayCharacterInventory(character.getInventory(), req);
+
+        getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+    }
+
+    private void displayCharacterInventory(List<String> characterInventory, HttpServletRequest req) {
         if (characterInventory != null && !characterInventory.isEmpty()) {
             req.setAttribute("inventory", gameMaster.showItemsInInventory(characterInventory));
         }
+    }
 
-        List<String> itemsInLocation = currentLocation.getItemsInLocation();
+    private void displayItemsInLocation(List<String> itemsInLocation, HttpServletRequest req) {
         if (!itemsInLocation.isEmpty()) {
             req.setAttribute("itemsInLocation", gameMaster.showItemsInLocation(itemsInLocation));
             req.setAttribute("showItems", true);
         }
-
-        req.getSession().setAttribute("tries", gameMaster.countTries(character));
-
-        getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 }

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(value = "")
+@WebServlet("")
 public class GameStart extends HttpServlet {
     private GameMaster gameMaster;
 

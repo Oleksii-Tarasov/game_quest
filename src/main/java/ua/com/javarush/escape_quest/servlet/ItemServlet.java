@@ -23,9 +23,9 @@ public class ItemServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String itemId = req.getParameter("item");
-        String locationId = (String) req.getSession().getAttribute("currentLocation");
         Character character = (Character) req.getSession().getAttribute("character");
+        String locationId = (String) req.getSession().getAttribute("currentLocation");
+        String itemId = req.getParameter("item");
 
         gameMaster.moveItemFromLocationToCharacterInventory(character, locationId, itemId);
 
