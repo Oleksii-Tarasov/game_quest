@@ -46,13 +46,13 @@ public class LocationServlet extends HttpServlet {
 
     private void displayCharacterInventory(List<String> characterInventory, HttpServletRequest req) {
         if (characterInventory != null && !characterInventory.isEmpty()) {
-            req.setAttribute("inventory", gameMaster.showItemsInInventory(characterInventory));
+            req.setAttribute("inventory", gameMaster.showItems(characterInventory));
         }
     }
 
     private void displayItemsInLocation(List<String> itemsInLocation, HttpServletRequest req) {
         if (!itemsInLocation.isEmpty()) {
-            req.setAttribute("itemsInLocation", gameMaster.showItemsInLocation(itemsInLocation));
+            req.setAttribute("itemsInLocation", gameMaster.showItems(itemsInLocation));
             req.setAttribute("showItems", true);
         }
     }

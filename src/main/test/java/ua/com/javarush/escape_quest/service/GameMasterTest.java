@@ -1,65 +1,101 @@
 package ua.com.javarush.escape_quest.service;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import ua.com.javarush.escape_quest.model.Character;
-import ua.com.javarush.escape_quest.model.Location;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GameMasterTest {
     private final GameMaster gameMaster = GameMaster.getGameMaster();
 
     @Test
-    public void isGetGameMaster_Returns_SingletonInstance() {
+    void isGetGameMaster_Returns_SingletonInstance() {
         GameMaster gameMaster1 = GameMaster.getGameMaster();
         GameMaster gameMaster2 = GameMaster.getGameMaster();
 
-        Assertions.assertEquals(gameMaster1, gameMaster2);
+        assertEquals(gameMaster1, gameMaster2);
     }
-
-//    @Test
-//    public void isLoadGameCharacter_Create_NewCharacterByTemplate() {
-//        String nickname = "user";
-//        long id = 1;
-//        int amountOfLives = 3;
-//
-//        Character character1 = new Character(id, nickname, amountOfLives);
-//
-//        gameMaster.loadGameLocations();
-//        character1.setGameLocations(gameMaster.getGameLocations());
-//
-//        Character character2 = gameMaster.loadGameCharacter("user");
-//
-//        Assertions.assertEquals(character1, character2);
-//    }
 
     @Test
-    public void testMoveItemFromLocationToCharacterInventory_ByItemId() {
-        List<String> itemsInLocation = new ArrayList<>();
-        itemsInLocation.add("sword");
+    void testShowItems_ShouldCreateMapWithItems_FromItemsIdList() {
+        Map<String, String> expectedMap = new HashMap<>();
+        expectedMap.put("sword", "Old Sword");
+        expectedMap.put("pizza", "Pizza slice");
+        expectedMap.put("book", "Poetry book");
 
-        Location testLocation = new Location("mainhall", "/view/mainhall.jsp", "/img/mainhall.jpg", "", itemsInLocation);
-        Character testCharacter = new Character(1,"user", 3);
+        List<String> itemsIdList = List.of("sword", "pizza", "book");
 
-        testCharacter.getInventory().add("sword");
-        testLocation.getItemsInLocation().remove("sword");
+        gameMaster.loadGameItems();
+        Map<String, String> actualMap = gameMaster.showItems(itemsIdList);
 
-        List<String> testInventory = testCharacter.getInventory();
-        List<String> testItemsInLocation = testLocation.getItemsInLocation();
-
-        gameMaster.loadGameLocations();
-        Character expectedCharacter = gameMaster.loadGameCharacter("user");
-        String locationId = "mainhall";
-        String itemId = "sword";
-        gameMaster.moveItemFromLocationToCharacterInventory(expectedCharacter, locationId, itemId);
-
-        List<String> expectedInventory = expectedCharacter.getInventory();
-        List<String> expectedItemsInLocation = expectedCharacter.getGameLocations().get("mainhall").getItemsInLocation();
-
-        Assertions.assertEquals(testInventory, expectedInventory);
-        Assertions.assertEquals(testItemsInLocation, expectedItemsInLocation);
+        assertEquals(expectedMap, actualMap);
     }
+
+    @ParameterizedTest
+    @MethodSource("argumentsForReduceLivesTest")
+    void testAttackBossAndGetResult_ShouldReducePlayerLives_WhenPlayerUseIncorrectItem(Character character, String itemId, int expectedAmountOfLives) {
+        gameMaster.loadGameItems();
+        gameMaster.attackBossAndGetResult(character, itemId);
+
+        int actualAmountOfLives = character.getAmountOfLives();
+
+        assertEquals(expectedAmountOfLives, actualAmountOfLives);
+    }
+
+    static Stream<Arguments> argumentsForReduceLivesTest() {
+        Character character1 = new Character(1, "user1", 0);
+        int expectedAmountOfLives1 = -1;
+        Character character2 = new Character(1, "user2", 6);
+        int expectedAmountOfLives2 = 6;
+        Character character3 = new Character(1, "user3", 100);
+        int expectedAmountOfLives3 = 99;
+
+        return Stream.of(
+                Arguments.of(character1, "sword", expectedAmountOfLives1),
+                Arguments.of(character2, "waterBucket", expectedAmountOfLives2),
+                Arguments.of(character3, "book", expectedAmountOfLives3)
+        );
+    }
+
+    @Test
+    void testCanCharacterFight_ReturnTrue_WhenTriesMoreThanZero_And_InventoryNotEmpty() {
+        Character character = new Character(1, "user", 1);
+        character.getInventory().add("sword");
+
+        boolean actualResult = gameMaster.canCharacterFight(character);
+
+        assertTrue(actualResult);
+    }
+
+    @ParameterizedTest
+    @MethodSource("charactersForCanCharacterFightTest")
+    void testCanCharacterFight_ReturnFalse_WhenTriesLessThanZero_Or_InventoryIsEmpty(Character character) {
+        boolean actualResult = gameMaster.canCharacterFight(character);
+
+        assertFalse(actualResult);
+    }
+
+    static Stream<Arguments> charactersForCanCharacterFightTest() {
+        Character character1 = new Character(1, "user1", 0);
+        character1.getInventory().add("sword");
+
+        Character character2 = new Character(1, "user2", 1);
+
+        Character character3 = new Character(1, "user3", -1);
+
+        return Stream.of(
+                Arguments.of(character1),
+                Arguments.of(character2),
+                Arguments.of(character3)
+        );
+    }
+
 }

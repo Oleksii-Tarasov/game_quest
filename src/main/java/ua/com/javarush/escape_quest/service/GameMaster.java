@@ -61,20 +61,12 @@ public class GameMaster {
         location.getItemsInLocation().remove(itemId);
     }
 
-    public Map<String, String> showItemsInLocation(List<String> itemsInLocation) {
-        return itemsInLocation.stream()
+    public Map<String, String> showItems(List<String> itemsIdList) {
+        return itemsIdList.stream()
                 .collect(Collectors.toMap(
                         item -> gameItems.get(item).getItemId(),
                         item -> gameItems.get(item).getDescription())
                 );
-    }
-
-    public Map<String, String> showItemsInInventory(List<String> inventory) {
-        return inventory.stream()
-                .collect(Collectors.toMap(
-                        itemId -> gameItems.get(itemId).getItemId(),
-                        itemId -> gameItems.get(itemId).getDescription()
-                ));
     }
 
     public String attackBossAndGetResult(Character character, String itemId) {
