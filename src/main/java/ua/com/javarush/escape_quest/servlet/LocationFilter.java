@@ -53,7 +53,7 @@ public class LocationFilter implements Filter {
         }
 
         req.setAttribute("gameTries", character.getGameAttempt());
-        session.setAttribute("battleTries", gameMaster.countTries(character));
+        session.setAttribute("battleTries", gameMaster.countBattleTries(character));
 
         filterChain.doFilter(servletRequest, servletResponse);
     }

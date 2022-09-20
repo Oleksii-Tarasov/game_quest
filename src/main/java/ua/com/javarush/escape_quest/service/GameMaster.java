@@ -87,10 +87,10 @@ public class GameMaster {
     }
 
     public boolean canCharacterFight(Character character) {
-        return countTries(character) > 0 && !character.getInventory().isEmpty();
+        return countBattleTries(character) > 0 && !character.getInventory().isEmpty();
     }
 
-    public int countTries(Character character) {
+    public int countBattleTries(Character character) {
         int battleTries = character.getInventory().size();
         int amountOfLives = character.getAmountOfLives();
 

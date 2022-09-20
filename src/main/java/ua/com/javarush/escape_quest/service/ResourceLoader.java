@@ -14,7 +14,7 @@ public class ResourceLoader {
             byte[] bytesFromFile = inputStream.readAllBytes();
             return objectMapper.readValue(bytesFromFile, ModelConfig.class);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new NullPointerException();
         }
     }
 }
