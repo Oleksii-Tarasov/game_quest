@@ -13,8 +13,8 @@ public class ResourceLoader {
         try (InputStream inputStream = getClass().getResourceAsStream(filePath)) {
             byte[] bytesFromFile = inputStream.readAllBytes();
             return objectMapper.readValue(bytesFromFile, ModelConfig.class);
-        } catch (IOException e) {
-            throw new NullPointerException();
+        } catch (NullPointerException | IOException e) {
+            throw new NullPointerException("Couldn't load resources from file " + filePath);
         }
     }
 }

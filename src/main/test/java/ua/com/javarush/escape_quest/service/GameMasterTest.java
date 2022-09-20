@@ -26,25 +26,15 @@ public class GameMasterTest {
     }
 
     @Test
-    void testLoadGameCharacter_ShouldCreateNewCharacterFromTemplateByNickname() {
-        //create first character:
-        Character expectedFirstCharacter = new Character(1, "user1", 3);
+    void testLoadGameCharacter_ShouldCreateNewCharacter_AndSetGameLocationsForHim() {
+        Character expectedCharacter = new Character(1, "user", 3);
         gameMaster.loadGameLocations();
-        expectedFirstCharacter.setGameLocations(gameMaster.getGameLocations());
+        expectedCharacter.setGameLocations(gameMaster.getGameLocations());
 
-        String nickname = "user1";
+        String nickname = "user";
         Character actualFirstCharacter = gameMaster.loadGameCharacter(nickname);
 
-        assertEquals(expectedFirstCharacter, actualFirstCharacter);
-
-        //create second character:
-        Character expectedSecondCharacter = new Character(2, "user2", 3);
-        expectedSecondCharacter.setGameLocations(gameMaster.getGameLocations());
-
-        nickname = "user2";
-        Character actualSecondCharacter = gameMaster.loadGameCharacter(nickname);
-
-        assertEquals(expectedSecondCharacter, actualSecondCharacter);
+        assertEquals(expectedCharacter, actualFirstCharacter);
     }
 
     @ParameterizedTest
