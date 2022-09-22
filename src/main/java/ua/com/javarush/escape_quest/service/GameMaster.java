@@ -17,10 +17,12 @@ public class GameMaster {
     private Map<Long, Character> gameCharacters;
     private Map<String, Location> gameLocations;
     private Map<String, Item> gameItems;
+    private Map<Long, Map<String, Location>> locationsForCharacters;
 
     private GameMaster() {
         this.gameConstructor = new GameConstructor(new ResourceLoader());
         this.gameCharacters = new HashMap<>();
+        this.locationsForCharacters = new HashMap<>();
     }
 
     public static GameMaster getGameMaster() {
@@ -40,9 +42,10 @@ public class GameMaster {
 
     public Character loadGameCharacter(String nickname) {
         Character character = gameConstructor.createCharacter(nickname);
-        character.setGameLocations(gameLocations);
 
         gameCharacters.put(character.getCharacterId(), character);
+
+        locationsForCharacters.put(character.getCharacterId(), gameLocations);
 
         return character;
     }
@@ -52,11 +55,11 @@ public class GameMaster {
         character.getInventory().clear();
         character.setWinner(false);
         loadGameLocations();
-        character.setGameLocations(gameLocations);
+        locationsForCharacters.put(character.getCharacterId(), gameLocations);
     }
 
     public void moveItemFromLocationToCharacterInventory(Character character, String locationId, String itemId) {
-        Location location = character.getGameLocations().get(locationId);
+        Location location = locationsForCharacters.get(character.getCharacterId()).get(locationId);
         character.getInventory().add(itemId);
         location.getItemsInLocation().remove(itemId);
     }

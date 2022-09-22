@@ -12,7 +12,6 @@ public class Character {
     private long characterId;
     private String nickname;
     private List<String> inventory;
-    private Map<String, Location> gameLocations;
     private int amountOfLives;
     private int gameAttempt;
     private int goodEndsNumber;
@@ -27,6 +26,5 @@ public class Character {
         this.goodEndsNumber = 0;
         this.badEndsNumber = 0;
         this.inventory = new ArrayList<>();
-        this.gameLocations = new HashMap<>();
     }
 }

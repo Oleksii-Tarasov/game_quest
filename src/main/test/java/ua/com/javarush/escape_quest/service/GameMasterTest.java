@@ -29,7 +29,7 @@ public class GameMasterTest {
     void testLoadGameCharacter_ShouldCreateNewCharacter_AndSetGameLocationsForHim() {
         Character expectedCharacter = new Character(1, "user", 3);
         gameMaster.loadGameLocations();
-        expectedCharacter.setGameLocations(gameMaster.getGameLocations());
+        gameMaster.getLocationsForCharacters().put(expectedCharacter.getCharacterId(), gameMaster.getGameLocations());
 
         String nickname = "user";
         Character actualFirstCharacter = gameMaster.loadGameCharacter(nickname);
@@ -79,14 +79,14 @@ public class GameMasterTest {
     void testMoveItemFromLocationToCharacterInventory(String locationId, String itemId) {
         Character character = new Character(1, "user", 3);
         gameMaster.loadGameLocations();
-        character.setGameLocations(gameMaster.getGameLocations());
+        gameMaster.getLocationsForCharacters().put(character.getCharacterId(), gameMaster.getGameLocations());
 
         gameMaster.moveItemFromLocationToCharacterInventory(character, locationId, itemId);
 
         boolean isInventoryHasRightItem = character.getInventory().contains(itemId);
         assertTrue(isInventoryHasRightItem);
 
-        boolean isLocationHasDisplacedItem = character.getGameLocations().get(locationId).getItemsInLocation().contains("sword");
+        boolean isLocationHasDisplacedItem = gameMaster.getLocationsForCharacters().get(character.getCharacterId()).get(locationId).getItemsInLocation().contains("sword");
         assertFalse(isLocationHasDisplacedItem);
 
     }

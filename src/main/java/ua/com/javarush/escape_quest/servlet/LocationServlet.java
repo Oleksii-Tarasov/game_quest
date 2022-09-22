@@ -32,7 +32,7 @@ public class LocationServlet extends HttpServlet {
         session.setAttribute("currentLocation", locationId);
 
         Character character = (Character) session.getAttribute("character");
-        Location currentLocation = character.getGameLocations().get(locationId);
+        Location currentLocation = gameMaster.getLocationsForCharacters().get(character.getCharacterId()).get(locationId);
 
         req.setAttribute("image", currentLocation.getImage());
         req.setAttribute("sound", currentLocation.getSound());
