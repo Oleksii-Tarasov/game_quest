@@ -29,7 +29,7 @@ public class GameMasterTest {
     void testLoadGameCharacter_ShouldCreateNewCharacter_AndSetGameLocationsForHim() {
         Character expectedCharacter = new Character(1, "user", 3);
         gameMaster.loadGameLocations();
-        gameMaster.getLocationsForCharacters().put(expectedCharacter.getCharacterId(), gameMaster.getGameLocations());
+        gameMaster.getLocationsForCharacter().put(expectedCharacter.getCharacterId(), gameMaster.getGameRepository().getGameLocations());
 
         String nickname = "user";
         Character actualFirstCharacter = gameMaster.loadGameCharacter(nickname);
@@ -79,14 +79,14 @@ public class GameMasterTest {
     void testMoveItemFromLocationToCharacterInventory(String locationId, String itemId) {
         Character character = new Character(1, "user", 3);
         gameMaster.loadGameLocations();
-        gameMaster.getLocationsForCharacters().put(character.getCharacterId(), gameMaster.getGameLocations());
+        gameMaster.getLocationsForCharacter().put(character.getCharacterId(), gameMaster.getGameRepository().getGameLocations());
 
         gameMaster.moveItemFromLocationToCharacterInventory(character, locationId, itemId);
 
         boolean isInventoryHasRightItem = character.getInventory().contains(itemId);
         assertTrue(isInventoryHasRightItem);
 
-        boolean isLocationHasDisplacedItem = gameMaster.getLocationsForCharacters().get(character.getCharacterId()).get(locationId).getItemsInLocation().contains("sword");
+        boolean isLocationHasDisplacedItem = gameMaster.getLocationsForCharacter().get(character.getCharacterId()).get(locationId).getItemsInLocation().contains("sword");
         assertFalse(isLocationHasDisplacedItem);
 
     }

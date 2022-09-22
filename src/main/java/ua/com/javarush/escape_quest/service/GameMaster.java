@@ -4,6 +4,7 @@ import lombok.Data;
 import ua.com.javarush.escape_quest.model.Character;
 import ua.com.javarush.escape_quest.model.Item;
 import ua.com.javarush.escape_quest.model.Location;
+import ua.com.javarush.escape_quest.repository.GameRepository;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,15 +15,13 @@ import java.util.stream.Collectors;
 public class GameMaster {
     private static GameMaster gameMaster;
     private final GameConstructor gameConstructor;
-    private Map<Long, Character> gameCharacters;
-    private Map<String, Location> gameLocations;
-    private Map<String, Item> gameItems;
-    private Map<Long, Map<String, Location>> locationsForCharacters;
+    private final GameRepository gameRepository;
+    private Map<Long, Map<String, Location>> locationsForCharacter;
 
     private GameMaster() {
         this.gameConstructor = new GameConstructor(new ResourceLoader());
-        this.gameCharacters = new HashMap<>();
-        this.locationsForCharacters = new HashMap<>();
+        this.gameRepository = new GameRepository();
+        this.locationsForCharacter = new HashMap<>();
     }
 
     public static GameMaster getGameMaster() {
@@ -33,19 +32,19 @@ public class GameMaster {
     }
 
     public void loadGameLocations() {
-        gameLocations = gameConstructor.createLocations();
+        gameRepository.setGameLocations(gameConstructor.createLocations());
     }
 
     public void loadGameItems() {
-        gameItems = gameConstructor.createItems();
+        gameRepository.setGameItems(gameConstructor.createItems());
     }
 
     public Character loadGameCharacter(String nickname) {
         Character character = gameConstructor.createCharacter(nickname);
 
-        gameCharacters.put(character.getCharacterId(), character);
+        gameRepository.getGameCharacters().put(character.getCharacterId(), character);
 
-        locationsForCharacters.put(character.getCharacterId(), gameLocations);
+        locationsForCharacter.put(character.getCharacterId(), gameRepository.getGameLocations());
 
         return character;
     }
@@ -55,11 +54,11 @@ public class GameMaster {
         character.getInventory().clear();
         character.setWinner(false);
         loadGameLocations();
-        locationsForCharacters.put(character.getCharacterId(), gameLocations);
+        locationsForCharacter.put(character.getCharacterId(), gameRepository.getGameLocations());
     }
 
     public void moveItemFromLocationToCharacterInventory(Character character, String locationId, String itemId) {
-        Location location = locationsForCharacters.get(character.getCharacterId()).get(locationId);
+        Location location = locationsForCharacter.get(character.getCharacterId()).get(locationId);
         character.getInventory().add(itemId);
         location.getItemsInLocation().remove(itemId);
     }
@@ -67,13 +66,13 @@ public class GameMaster {
     public Map<String, String> showItems(List<String> itemsIdList) {
         return itemsIdList.stream()
                 .collect(Collectors.toMap(
-                        item -> gameItems.get(item).getItemId(),
-                        item -> gameItems.get(item).getDescription())
+                        item -> gameRepository.getGameItems().get(item).getItemId(),
+                        item -> gameRepository.getGameItems().get(item).getDescription())
                 );
     }
 
     public String attackBossAndGetResult(Character character, String itemId) {
-        Item item = gameItems.get(itemId);
+        Item item = gameRepository.getGameItems().get(itemId);
 
         if ("waterBucket".equals(itemId)) {
             character.setWinner(true);

@@ -38,6 +38,9 @@ The package `constant` contains the classes:
 The package `model` contains the classes:
 - `Character`, `Location`, `Item` - classes of appropriate game models.
 
+The package `repository` contains the class:
+- `GameRepository` - Class for storing game data(locations, items, characters).
+
 The package `service` contains the classes:
 - `GameConstructor` - creates character, locations Map and items Map;
 - `GameMaster` - manages game mechanics and models;
