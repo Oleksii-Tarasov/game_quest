@@ -12,6 +12,7 @@ public class Character {
     private List<String> inventory;
     private int amountOfLives;
     private int gameAttempt;
+    private String currentLocationId;
     private int goodEndsNumber;
     private int badEndsNumber;
     private boolean isWinner;

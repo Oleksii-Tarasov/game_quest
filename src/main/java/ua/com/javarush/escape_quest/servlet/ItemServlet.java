@@ -24,7 +24,7 @@ public class ItemServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Character character = (Character) req.getSession().getAttribute("character");
-        String locationId = (String) req.getSession().getAttribute("currentLocation");
+        String locationId = character.getCurrentLocationId();
         String itemId = req.getParameter("item");
 
         gameMaster.moveItemFromLocationToCharacterInventory(character, locationId, itemId);
@@ -34,7 +34,8 @@ public class ItemServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String locationId = (String) req.getSession().getAttribute("currentLocation");
+        Character character = (Character) req.getSession().getAttribute("character");
+        String locationId = character.getCurrentLocationId();
 
         if ("bossarena".equals(locationId)) {
             String itemId = req.getParameter("item");

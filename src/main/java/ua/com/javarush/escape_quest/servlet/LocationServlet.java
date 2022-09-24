@@ -28,10 +28,11 @@ public class LocationServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
 
-        String locationId = req.getParameter("id");
-        session.setAttribute("currentLocation", locationId);
-
         Character character = (Character) session.getAttribute("character");
+
+        String locationId = req.getParameter("id");
+        character.setCurrentLocationId(locationId);
+
         Location currentLocation = gameMaster.getLocationsForCharacter().get(character.getCharacterId()).get(locationId);
 
         req.setAttribute("image", currentLocation.getImage());
