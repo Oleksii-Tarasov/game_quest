@@ -13,14 +13,6 @@ import static ua.com.javarush.escape_quest.constant.LocationRules.*;
 
 @WebFilter("/location/")
 public class LocationFilter implements Filter {
-    private GameMaster gameMaster;
-
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        Filter.super.init(filterConfig);
-        gameMaster = (GameMaster) filterConfig.getServletContext().getAttribute("gameMaster");
-    }
-
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
@@ -35,6 +27,8 @@ public class LocationFilter implements Filter {
 
         HttpSession session = req.getSession();
         Character character = (Character) session.getAttribute("character");
+
+        GameMaster gameMaster = (GameMaster) req.getServletContext().getAttribute("gameMaster");
 
         if (BAD_ENDS.contains(locationId)) {
             character.setWinner(false);

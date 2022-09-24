@@ -3,8 +3,6 @@ package ua.com.javarush.escape_quest.servlet;
 import ua.com.javarush.escape_quest.model.Character;
 import ua.com.javarush.escape_quest.service.GameMaster;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,20 +11,13 @@ import java.io.IOException;
 
 @WebServlet(value = "/grabitem")
 public class ItemServlet extends HttpServlet {
-    private GameMaster gameMaster;
-
-    @Override
-    public void init(ServletConfig config) throws ServletException {
-        super.init(config);
-        gameMaster = (GameMaster) config.getServletContext().getAttribute("gameMaster");
-    }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Character character = (Character) req.getSession().getAttribute("character");
         String locationId = character.getCurrentLocationId();
         String itemId = req.getParameter("item");
 
+        GameMaster gameMaster = (GameMaster) req.getSession().getServletContext().getAttribute("gameMaster");
         gameMaster.moveItemFromLocationToCharacterInventory(character, locationId, itemId);
 
         resp.sendRedirect(req.getContextPath() + "/location/?id=" + locationId);
