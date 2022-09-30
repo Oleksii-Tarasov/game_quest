@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static ua.com.javarush.escape_quest.constant.CharacterRules.MAX_AMOUNT_OF_LIVES;
+
 @Data
 public class GameMaster {
     private static GameMaster gameMaster;
@@ -50,7 +52,7 @@ public class GameMaster {
     }
 
     public void resetCharacterStats(Character character) {
-        character.setAmountOfLives(3);
+        character.setAmountOfLives(MAX_AMOUNT_OF_LIVES);
         character.getInventory().clear();
         character.setWinner(false);
         loadGameLocations();

@@ -11,6 +11,8 @@ import ua.com.javarush.escape_quest.model.Location;
 import java.util.HashMap;
 import java.util.Map;
 
+import static ua.com.javarush.escape_quest.constant.CharacterRules.DEFAULT_NICKNAME;
+import static ua.com.javarush.escape_quest.constant.CharacterRules.MAX_AMOUNT_OF_LIVES;
 import static ua.com.javarush.escape_quest.constant.ResourceFilesPath.ITEMS_FILE_PATH;
 import static ua.com.javarush.escape_quest.constant.ResourceFilesPath.LOCATIONS_FILE_PATH;
 
@@ -62,12 +64,11 @@ public class GameConstructor {
 
     public Character createCharacter(String nickname) {
         if (("<enter your name>").equals(nickname)) {
-            nickname = "Unknown Hero";
+            nickname = DEFAULT_NICKNAME;
         }
 
-        int amountOfLives = 3;
         characterId++;
 
-        return new Character(characterId, nickname, amountOfLives);
+        return new Character(characterId, nickname, MAX_AMOUNT_OF_LIVES);
     }
 }

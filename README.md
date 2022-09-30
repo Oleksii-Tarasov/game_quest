@@ -32,6 +32,7 @@ The package `configuration` contains the classes:
 - `ModelConfig` - class containing arrays of properties of items and locations.
 
 The package `constant` contains the classes:
+- `CharacterRules` - contains the default characteristics of the character;
 - `LocationRules` - contains lists of locations where special rules apply;
 - `ResourceFilesPath` - paths to _**.json**_ files that contain information for creating locations and items.
 
