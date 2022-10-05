@@ -20,7 +20,7 @@ ___
 Game session lasts 30 minutes after which game data will be lost.
 ___
 ### Application launch
-**_1 way - Follow the link:_** https://gamequest.fly.dev/escape_quest/
+**_1 way - Follow the link:_** https://tek.fly.dev/escape_quest/
 
 **_2 way - Run on your local computer:_** `escape_quest.war` file in the `dist` project directory should be 
 deployed into tomcat 9 version. Then use context to run: http://localhost:8080/escape_quest/
