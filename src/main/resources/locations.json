@@ -1,0 +1,96 @@
+{
+  "locationProperties" : [
+    {
+      "locationId": "prison",
+      "storyBlock": "/view/prison.jsp",
+      "image" : "/img/prison.jpg",
+      "sound" : "/sound/prison.mp3",
+      "itemsInLocation" : []
+    },
+    {
+      "locationId": "mainhall",
+      "storyBlock" : "/view/mainhall.jsp",
+      "image" : "/img/mainhall.jpg",
+      "sound" : "",
+      "itemsInLocation" : [
+        "sword"
+      ]
+    },
+    {
+      "locationId": "cage",
+      "storyBlock" : "/view/cage.jsp",
+      "image" : "/img/cage.jpg",
+      "sound" : "/sound/cage.mp3",
+      "itemsInLocation" : []
+    },
+    {
+      "locationId": "cellar",
+      "storyBlock" : "/view/cellar.jsp",
+      "image" : "/img/cellar.gif",
+      "sound" : "/sound/cry.mp3",
+      "itemsInLocation" : []
+    },
+    {
+      "locationId": "dungeon",
+      "storyBlock" : "/view/dungeon.jsp",
+      "image" : "/img/dungeon.jpg",
+      "sound" : "",
+      "itemsInLocation" : [
+        "waterBucket",
+        "book"
+      ]
+    },
+    {
+      "locationId": "firebridge",
+      "storyBlock": "/view/firebridge.jsp",
+      "image": "/img/firebridge.jpg",
+      "sound": "/sound/firebridge.mp3",
+      "itemsInLocation" : []
+    },
+    {
+      "locationId": "firecage",
+      "storyBlock": "/view/firecage.jsp",
+      "image": "/img/firecage.gif",
+      "sound": "/sound/firecage.mp3",
+      "itemsInLocation" : []
+    },
+    {
+      "locationId": "firehall",
+      "storyBlock": "/view/firehall.jsp",
+      "image": "/img/firehall.jpg",
+      "sound": "",
+      "itemsInLocation" : [
+        "pizza",
+        "textbook"
+      ]
+    },
+    {
+      "locationId": "garden",
+      "storyBlock": "/view/garden.jsp",
+      "image": "/img/garden.gif",
+      "sound": "/sound/garden.mp3",
+      "itemsInLocation" : []
+    },
+    {
+      "locationId": "hellend",
+      "storyBlock": "/view/hellend.jsp",
+      "image": "/img/devil.gif",
+      "sound": "/sound/hellend.mp3",
+      "itemsInLocation" : []
+    },
+    {
+      "locationId": "thronehall",
+      "storyBlock": "/view/thronehall.jsp",
+      "image": "/img/steam.gif",
+      "sound": "/sound/thronehall.mp3",
+      "itemsInLocation" : []
+    },
+    {
+      "locationId": "bossarena",
+      "storyBlock": "/view/bossarena.jsp",
+      "image": "/img/bossarena.jpg",
+      "sound": "/sound/laugh.mp3",
+      "itemsInLocation" : []
+    }
+  ]
+}

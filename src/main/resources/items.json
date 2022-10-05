@@ -1,0 +1,29 @@
+{
+  "itemProperties" : [
+    {
+      "itemId": "waterBucket",
+      "description" : "Bucket with water",
+      "effect" : "You put out the hellfire with water from the bucket <br> and the Lord of the Underworld turns into steam."
+    },
+    {
+      "itemId": "book",
+      "description" : "Poetry book",
+      "effect" : "You recite a verse from a book, but the Lord of the Underworld does not get kinder"
+    },
+    {
+      "itemId": "sword",
+      "description" : "Old Sword",
+      "effect" : "The old sword is melted, the Lord of the Underworld is laughing at your pathetic attempt"
+    },
+    {
+      "itemId": "pizza",
+      "description" : "Pizza slice",
+      "effect" : "Lord of the Underworld is not hungry"
+    },
+    {
+      "itemId": "textbook",
+      "description" : "Front-end textbook",
+      "effect" : "Front-end textbook burns in hellfire. For some reason, an unhealthy smile appears on your face"
+    }
+    ]
+}

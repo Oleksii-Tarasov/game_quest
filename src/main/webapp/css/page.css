@@ -1,9 +1,11 @@
+/*body block*/
+
 body {
     background-color: #333131;
     -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none;   /* Chrome/Safari/Opera */
-    -moz-user-select: none;      /* Firefox */
-    -ms-user-select: none;       /* Internet Explorer/Edge */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
 header {
@@ -11,6 +13,15 @@ header {
     font-size: xxx-large;
     font-family: Constantia, serif;
     color: #a4711b;
+}
+
+a {
+    color: darkgray;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #9fcdff;
 }
 
 table {
@@ -26,11 +37,10 @@ td {
     padding-top: 4px;
 }
 
+/*content block*/
 
 img {
-    float: bottom;
-    margin: 7px 7px 7px 7px;
-    /*margin: auto;*/
+    margin: auto;
     display: block;
     border-radius: 10px;
     max-width: 100%;
@@ -41,10 +51,54 @@ img {
     padding-left: 2px;
     padding-right: 2px;
     text-indent: 5px;
-    text-align: justify;
+    text-align: center;
     font-size: x-large;
     font-family: "Ink Free", serif;
 }
+
+.introduceContentBlock {
+    padding-top: 20px;
+    text-align: center;
+    font-size: x-large;
+    font-family: Constantia, serif;
+    color: #a4711b;
+    float: none;
+    margin: auto;
+}
+
+.message {
+    font-family: Constantia, serif;
+    font-size: x-large;
+    text-align: center;
+    color: grey;
+}
+
+#clockdiv {
+    font-family: Constantia, serif;
+    color: red;
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.loserLabel {
+    border-radius: 8px;
+    color: #a50e0e;
+    font-size: 40px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.winnerLabel {
+    border-radius: 8px;
+    color: cornflowerblue;
+    font-size: 40px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+/*input block*/
 
 input[type=text] {
     width: 150px;
@@ -66,20 +120,7 @@ input[type=submit] {
     cursor: pointer;
 }
 
-.checkBox {
-    display: inline;
-    background: #333131;
-    color: #489cbb;
-    border: none;
-    font-family: Constantia, serif;
-    font-size: large;
-    text-align: justify;
-}
-
-a {
-    color: darkgray;
-    text-decoration: none;
-}
+/*menu block*/
 
 .inventory {
     font-size: xx-large;
@@ -92,6 +133,7 @@ a {
 .inventory:hover {
     border: 1px solid #a4711b;
     border-radius: 8px;
+    color: darkgray;
     cursor: pointer;
 }
 
@@ -121,8 +163,13 @@ a {
     color: darkgray;
     padding: 10px;
     display: block;
+}
+
+.dropdown-child button:hover {
     cursor: grab;
 }
+
+/*button block*/
 
 button {
     font-size: x-large;
@@ -134,20 +181,24 @@ button {
     cursor: pointer;
 }
 
-.loserLabel {
-    border-radius: 8px;
-    color: #a50e0e;
-    font-size: 40px;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
+button:hover {
+    color: #9fcdff;
 }
 
-.winnerLabel {
+.itemButton button {
+    display: inline-block;
+    font-size: medium;
+    background-color: #302d33;
+    color: #489cbb;
+
+    border: 2px solid gray;
     border-radius: 8px;
-    color: cornflowerblue;
-    font-size: 40px;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
+}
+
+.itemButton button:hover {
+    background-color: #231f1f;
+    border: 2px solid #a4711b;
+    cursor: grab;
 }
 
 .startButton {
@@ -156,20 +207,6 @@ button {
     padding-top: 20px;
 }
 
-.introduceContentBlock {
-    padding-top: 20px;
-    text-align: center;
-    font-size: xx-large;
-    font-family: Constantia, serif;
-    color: #a4711b;
-
-    float: none;
-    margin: auto;
-}
-
-.message {
-    font-family: Constantia, serif;
-    font-size: x-large;
-    text-align: left;
-    color: grey;
+.statButton {
+    text-align: right;
 }
